@@ -1,0 +1,1494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>    Roundcube Framework &raquo; \rcube_tnef_decoder
+</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+            <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+            <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+        <![endif]-->
+        <script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script>
+        <script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script>
+        <script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script>
+        <script src="../js/bootstrap.js" type="text/javascript"></script>
+        <script src="../js/template.js" type="text/javascript"></script>
+        <script src="../js/prettify/prettify.min.js" type="text/javascript"></script>
+    
+            <link rel="shortcut icon" href="../img/favicon.ico"/>
+        <link rel="apple-touch-icon" href="../img/apple-touch-icon.png"/>
+        <link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png"/>
+        <link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png"/>
+    </head>
+<body>
+
+        <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span> <span class="icon-bar"></span>
+                    <span class="icon-bar"></span> </a>
+                <a class="brand" href="../index.html">Roundcube Framework</a>
+
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li class="dropdown">
+                            <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                API Documentation <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                                                                            </ul>
+                        </li>
+                        <li class="dropdown" id="charts-menu">
+                            <a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                Charts <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../graph_class.html">
+                                        <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown" id="reports-menu">
+                            <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                Reports <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../errors.html">
+                                        <i class="icon-list-alt"></i>&#160;Errors
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../markers.html">
+                                        <i class="icon-list-alt"></i>&#160;Markers
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../deprecated.html">
+                                        <i class="icon-list-alt"></i>&#160;Deprecated
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="go_to_top">
+            <a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>
+        </div>
+    </div>
+    
+    <div id="___" class="container">
+        <noscript>
+            <div class="alert alert-warning">
+                Javascript is disabled; several features are only available if Javascript is enabled.
+            </div>
+        </noscript>
+
+        
+            <style>
+        .deprecated h2 {
+            text-decoration: line-through;
+        }
+    </style>
+    <div class="row">
+        <div class="span4">
+                    <div class="btn-group view pull-right" data-toggle="buttons-radio">
+        <button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button>
+        <button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+    </div>
+    <div class="btn-group visibility" data-toggle="buttons-checkbox">
+        <button class="btn public active" title="Show public elements">Public</button>
+        <button class="btn protected" title="Show protected elements">Protected</button>
+        <button class="btn private" title="Show private elements">Private</button>
+        <button class="btn inherited active" title="Show inherited elements">Inherited</button>
+    </div>
+
+        <ul class="side-nav nav nav-list">
+        <li class="nav-header">
+            <i class="icon-custom icon-method"></i> Methods
+            <ul>
+                                                                                                    <li class="method public">
+        <a href="#method_decompress" title="decompress :: Decompress the data.">
+            <span class="description">Decompress the data.</span><pre>decompress</pre>
+        </a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                                                                                                                </ul>
+        </li>
+        <li class="nav-header protected">» Protected
+            <ul>
+                                                                                                                <li class="method protected">
+                            <a href="#method__getx" title="_getx :: TODO">
+                                <span class="description">TODO</span><pre>_getx</pre>
+                            </a>
+                        </li>
+                                                                                <li class="method protected">
+                            <a href="#method__geti" title="_geti :: TODO">
+                                <span class="description">TODO</span><pre>_geti</pre>
+                            </a>
+                        </li>
+                                                                                <li class="method protected">
+                            <a href="#method__decodeAttribute" title="_decodeAttribute :: TODO">
+                                <span class="description">TODO</span><pre>_decodeAttribute</pre>
+                            </a>
+                        </li>
+                                                                                <li class="method protected">
+                            <a href="#method__extractMapiAttributes" title="_extractMapiAttributes :: TODO">
+                                <span class="description">TODO</span><pre>_extractMapiAttributes</pre>
+                            </a>
+                        </li>
+                                                                                <li class="method protected">
+                            <a href="#method__decodeMessage" title="_decodeMessage :: TODO">
+                                <span class="description">TODO</span><pre>_decodeMessage</pre>
+                            </a>
+                        </li>
+                                                                                <li class="method protected">
+                            <a href="#method__decodeAttachment" title="_decodeAttachment :: TODO">
+                                <span class="description">TODO</span><pre>_decodeAttachment</pre>
+                            </a>
+                        </li>
+                                                </ul>
+        </li>
+        <li class="nav-header private">» Private
+            <ul>
+                                                                                                                                                                                                                                                                                                        </ul>
+        </li>
+        <li class="nav-header">
+            <i class="icon-custom icon-constant"></i> Constants
+            <ul>
+                                <li class="constant ">
+                    <a href="#constant_SIGNATURE" title="SIGNATURE :: ">
+                        <span class="description"></span><pre>SIGNATURE</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_LVL_MESSAGE" title="LVL_MESSAGE :: ">
+                        <span class="description"></span><pre>LVL_MESSAGE</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_LVL_ATTACHMENT" title="LVL_ATTACHMENT :: ">
+                        <span class="description"></span><pre>LVL_ATTACHMENT</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_ASUBJECT" title="ASUBJECT :: ">
+                        <span class="description"></span><pre>ASUBJECT</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_AMCLASS" title="AMCLASS :: ">
+                        <span class="description"></span><pre>AMCLASS</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_ATTACHDATA" title="ATTACHDATA :: ">
+                        <span class="description"></span><pre>ATTACHDATA</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_AFILENAME" title="AFILENAME :: ">
+                        <span class="description"></span><pre>AFILENAME</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_ARENDDATA" title="ARENDDATA :: ">
+                        <span class="description"></span><pre>ARENDDATA</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_AMAPIATTRS" title="AMAPIATTRS :: ">
+                        <span class="description"></span><pre>AMAPIATTRS</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_AVERSION" title="AVERSION :: ">
+                        <span class="description"></span><pre>AVERSION</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_MAPI_NULL" title="MAPI_NULL :: ">
+                        <span class="description"></span><pre>MAPI_NULL</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_MAPI_SHORT" title="MAPI_SHORT :: ">
+                        <span class="description"></span><pre>MAPI_SHORT</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_MAPI_INT" title="MAPI_INT :: ">
+                        <span class="description"></span><pre>MAPI_INT</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_MAPI_FLOAT" title="MAPI_FLOAT :: ">
+                        <span class="description"></span><pre>MAPI_FLOAT</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_MAPI_DOUBLE" title="MAPI_DOUBLE :: ">
+                        <span class="description"></span><pre>MAPI_DOUBLE</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_MAPI_CURRENCY" title="MAPI_CURRENCY :: ">
+                        <span class="description"></span><pre>MAPI_CURRENCY</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_MAPI_APPTIME" title="MAPI_APPTIME :: ">
+                        <span class="description"></span><pre>MAPI_APPTIME</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_MAPI_ERROR" title="MAPI_ERROR :: ">
+                        <span class="description"></span><pre>MAPI_ERROR</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_MAPI_BOOLEAN" title="MAPI_BOOLEAN :: ">
+                        <span class="description"></span><pre>MAPI_BOOLEAN</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_MAPI_OBJECT" title="MAPI_OBJECT :: ">
+                        <span class="description"></span><pre>MAPI_OBJECT</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_MAPI_INT8BYTE" title="MAPI_INT8BYTE :: ">
+                        <span class="description"></span><pre>MAPI_INT8BYTE</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_MAPI_STRING" title="MAPI_STRING :: ">
+                        <span class="description"></span><pre>MAPI_STRING</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_MAPI_UNICODE_STRING" title="MAPI_UNICODE_STRING :: ">
+                        <span class="description"></span><pre>MAPI_UNICODE_STRING</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_MAPI_SYSTIME" title="MAPI_SYSTIME :: ">
+                        <span class="description"></span><pre>MAPI_SYSTIME</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_MAPI_CLSID" title="MAPI_CLSID :: ">
+                        <span class="description"></span><pre>MAPI_CLSID</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_MAPI_BINARY" title="MAPI_BINARY :: ">
+                        <span class="description"></span><pre>MAPI_BINARY</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_MAPI_ATTACH_LONG_FILENAME" title="MAPI_ATTACH_LONG_FILENAME :: ">
+                        <span class="description"></span><pre>MAPI_ATTACH_LONG_FILENAME</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_MAPI_ATTACH_MIME_TAG" title="MAPI_ATTACH_MIME_TAG :: ">
+                        <span class="description"></span><pre>MAPI_ATTACH_MIME_TAG</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_MAPI_NAMED_TYPE_ID" title="MAPI_NAMED_TYPE_ID :: ">
+                        <span class="description"></span><pre>MAPI_NAMED_TYPE_ID</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_MAPI_NAMED_TYPE_STRING" title="MAPI_NAMED_TYPE_STRING :: ">
+                        <span class="description"></span><pre>MAPI_NAMED_TYPE_STRING</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_MAPI_MV_FLAG" title="MAPI_MV_FLAG :: ">
+                        <span class="description"></span><pre>MAPI_MV_FLAG</pre>
+                    </a>
+                </li>
+                            </ul>
+        </li>
+    </ul>
+
+
+        </div>
+
+        <div class="span8">
+            <div class="element class">
+                <h1>rcube_tnef_decoder</h1>
+                <small style="display: block; text-align: right">
+                                                        </small>
+                <p class="short_description">MS-TNEF format decoder based on code by:
+  Graham Norbury &lt;gnorbury@bondcar.com&gt;
+Original design by:
+  Thomas Boll &lt;tb@boll.ch&gt;, Mark Simpson &lt;damned@world.std.com&gt;</p>
+                <div class="details">
+                    <div class="long_description">
+                        
+                    </div>
+                    <table class="table table-bordered">
+                                                                                    <tr>
+                                    <th>
+                                        package
+                                                                            </th>
+                                    <td>
+                                                                                    
+                                                                                <p>Framework</p>
+                                    </td>
+                                </tr>
+                                                                                                                <tr>
+                                    <th>
+                                        subpackage
+                                                                            </th>
+                                    <td>
+                                                                                    
+                                                                                <p>Storage</p>
+                                    </td>
+                                </tr>
+                                                                                                                                                                                </table>
+
+                    <h3><i class="icon-custom icon-method"></i> Methods</h3>
+                                                                <a id="method_decompress"></a>
+                        <div class="element clickable method public  method_decompress" data-toggle="collapse" data-target=".method_decompress .collapse">
+                            <h2>Decompress the data.</h2>
+                            <pre>decompress(string $data, array $params = array()) : mixed</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$data</h4>
+                                                <code>string</code><p><p>The data to decompress.</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$params</h4>
+                                                <code>array</code><p><p>An array of arguments needed to decompress the</p>
+<pre><code>                  data.</code></pre></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>mixed</code><p><p>The decompressed data.</p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method__getx"></a>
+                        <div class="element clickable method protected  method__getx" data-toggle="collapse" data-target=".method__getx .collapse">
+                            <h2>TODO</h2>
+                            <pre>_getx(&$data, integer $bits) : \TODO</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$data</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$bits</h4>
+                                                <code>integer</code><p><p>How many bits to retrieve.</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>\TODO</code><p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method__geti"></a>
+                        <div class="element clickable method protected  method__geti" data-toggle="collapse" data-target=".method__geti .collapse">
+                            <h2>TODO</h2>
+                            <pre>_geti(&$data, integer $bits) : \TODO</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$data</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$bits</h4>
+                                                <code>integer</code><p><p>How many bits to retrieve.</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>\TODO</code><p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method__decodeAttribute"></a>
+                        <div class="element clickable method protected  method__decodeAttribute" data-toggle="collapse" data-target=".method__decodeAttribute .collapse">
+                            <h2>TODO</h2>
+                            <pre>_decodeAttribute(&$data, string $attribute) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$data</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$attribute</h4>
+                                                <code>string</code><p><p>TODO</p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method__extractMapiAttributes"></a>
+                        <div class="element clickable method protected  method__extractMapiAttributes" data-toggle="collapse" data-target=".method__extractMapiAttributes .collapse">
+                            <h2>TODO</h2>
+                            <pre>_extractMapiAttributes(string $data, &$attachment_data) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$data</h4>
+                                                <code>string</code><p><p>The data string.</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$attachment_data</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method__decodeMessage"></a>
+                        <div class="element clickable method protected  method__decodeMessage" data-toggle="collapse" data-target=".method__decodeMessage .collapse">
+                            <h2>TODO</h2>
+                            <pre>_decodeMessage(&$data) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$data</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method__decodeAttachment"></a>
+                        <div class="element clickable method protected  method__decodeAttachment" data-toggle="collapse" data-target=".method__decodeAttachment .collapse">
+                            <h2>TODO</h2>
+                            <pre>_decodeAttachment(&$data, &$attachment_data) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$data</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$attachment_data</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+                        </div>
+                    
+                                            <h3><i class="icon-custom icon-constant"></i> Constants</h3>
+                                                    <a id="constant_SIGNATURE"> </a>
+                            <div class="element clickable constant  constant_SIGNATURE" data-toggle="collapse" data-target=".constant_SIGNATURE .collapse">
+                                <h2>SIGNATURE</h2>
+                                <pre>SIGNATURE</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_LVL_MESSAGE"> </a>
+                            <div class="element clickable constant  constant_LVL_MESSAGE" data-toggle="collapse" data-target=".constant_LVL_MESSAGE .collapse">
+                                <h2>LVL_MESSAGE</h2>
+                                <pre>LVL_MESSAGE</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_LVL_ATTACHMENT"> </a>
+                            <div class="element clickable constant  constant_LVL_ATTACHMENT" data-toggle="collapse" data-target=".constant_LVL_ATTACHMENT .collapse">
+                                <h2>LVL_ATTACHMENT</h2>
+                                <pre>LVL_ATTACHMENT</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_ASUBJECT"> </a>
+                            <div class="element clickable constant  constant_ASUBJECT" data-toggle="collapse" data-target=".constant_ASUBJECT .collapse">
+                                <h2>ASUBJECT</h2>
+                                <pre>ASUBJECT</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_AMCLASS"> </a>
+                            <div class="element clickable constant  constant_AMCLASS" data-toggle="collapse" data-target=".constant_AMCLASS .collapse">
+                                <h2>AMCLASS</h2>
+                                <pre>AMCLASS</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_ATTACHDATA"> </a>
+                            <div class="element clickable constant  constant_ATTACHDATA" data-toggle="collapse" data-target=".constant_ATTACHDATA .collapse">
+                                <h2>ATTACHDATA</h2>
+                                <pre>ATTACHDATA</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_AFILENAME"> </a>
+                            <div class="element clickable constant  constant_AFILENAME" data-toggle="collapse" data-target=".constant_AFILENAME .collapse">
+                                <h2>AFILENAME</h2>
+                                <pre>AFILENAME</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_ARENDDATA"> </a>
+                            <div class="element clickable constant  constant_ARENDDATA" data-toggle="collapse" data-target=".constant_ARENDDATA .collapse">
+                                <h2>ARENDDATA</h2>
+                                <pre>ARENDDATA</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_AMAPIATTRS"> </a>
+                            <div class="element clickable constant  constant_AMAPIATTRS" data-toggle="collapse" data-target=".constant_AMAPIATTRS .collapse">
+                                <h2>AMAPIATTRS</h2>
+                                <pre>AMAPIATTRS</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_AVERSION"> </a>
+                            <div class="element clickable constant  constant_AVERSION" data-toggle="collapse" data-target=".constant_AVERSION .collapse">
+                                <h2>AVERSION</h2>
+                                <pre>AVERSION</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_MAPI_NULL"> </a>
+                            <div class="element clickable constant  constant_MAPI_NULL" data-toggle="collapse" data-target=".constant_MAPI_NULL .collapse">
+                                <h2>MAPI_NULL</h2>
+                                <pre>MAPI_NULL</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_MAPI_SHORT"> </a>
+                            <div class="element clickable constant  constant_MAPI_SHORT" data-toggle="collapse" data-target=".constant_MAPI_SHORT .collapse">
+                                <h2>MAPI_SHORT</h2>
+                                <pre>MAPI_SHORT</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_MAPI_INT"> </a>
+                            <div class="element clickable constant  constant_MAPI_INT" data-toggle="collapse" data-target=".constant_MAPI_INT .collapse">
+                                <h2>MAPI_INT</h2>
+                                <pre>MAPI_INT</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_MAPI_FLOAT"> </a>
+                            <div class="element clickable constant  constant_MAPI_FLOAT" data-toggle="collapse" data-target=".constant_MAPI_FLOAT .collapse">
+                                <h2>MAPI_FLOAT</h2>
+                                <pre>MAPI_FLOAT</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_MAPI_DOUBLE"> </a>
+                            <div class="element clickable constant  constant_MAPI_DOUBLE" data-toggle="collapse" data-target=".constant_MAPI_DOUBLE .collapse">
+                                <h2>MAPI_DOUBLE</h2>
+                                <pre>MAPI_DOUBLE</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_MAPI_CURRENCY"> </a>
+                            <div class="element clickable constant  constant_MAPI_CURRENCY" data-toggle="collapse" data-target=".constant_MAPI_CURRENCY .collapse">
+                                <h2>MAPI_CURRENCY</h2>
+                                <pre>MAPI_CURRENCY</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_MAPI_APPTIME"> </a>
+                            <div class="element clickable constant  constant_MAPI_APPTIME" data-toggle="collapse" data-target=".constant_MAPI_APPTIME .collapse">
+                                <h2>MAPI_APPTIME</h2>
+                                <pre>MAPI_APPTIME</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_MAPI_ERROR"> </a>
+                            <div class="element clickable constant  constant_MAPI_ERROR" data-toggle="collapse" data-target=".constant_MAPI_ERROR .collapse">
+                                <h2>MAPI_ERROR</h2>
+                                <pre>MAPI_ERROR</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_MAPI_BOOLEAN"> </a>
+                            <div class="element clickable constant  constant_MAPI_BOOLEAN" data-toggle="collapse" data-target=".constant_MAPI_BOOLEAN .collapse">
+                                <h2>MAPI_BOOLEAN</h2>
+                                <pre>MAPI_BOOLEAN</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_MAPI_OBJECT"> </a>
+                            <div class="element clickable constant  constant_MAPI_OBJECT" data-toggle="collapse" data-target=".constant_MAPI_OBJECT .collapse">
+                                <h2>MAPI_OBJECT</h2>
+                                <pre>MAPI_OBJECT</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_MAPI_INT8BYTE"> </a>
+                            <div class="element clickable constant  constant_MAPI_INT8BYTE" data-toggle="collapse" data-target=".constant_MAPI_INT8BYTE .collapse">
+                                <h2>MAPI_INT8BYTE</h2>
+                                <pre>MAPI_INT8BYTE</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_MAPI_STRING"> </a>
+                            <div class="element clickable constant  constant_MAPI_STRING" data-toggle="collapse" data-target=".constant_MAPI_STRING .collapse">
+                                <h2>MAPI_STRING</h2>
+                                <pre>MAPI_STRING</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_MAPI_UNICODE_STRING"> </a>
+                            <div class="element clickable constant  constant_MAPI_UNICODE_STRING" data-toggle="collapse" data-target=".constant_MAPI_UNICODE_STRING .collapse">
+                                <h2>MAPI_UNICODE_STRING</h2>
+                                <pre>MAPI_UNICODE_STRING</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_MAPI_SYSTIME"> </a>
+                            <div class="element clickable constant  constant_MAPI_SYSTIME" data-toggle="collapse" data-target=".constant_MAPI_SYSTIME .collapse">
+                                <h2>MAPI_SYSTIME</h2>
+                                <pre>MAPI_SYSTIME</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_MAPI_CLSID"> </a>
+                            <div class="element clickable constant  constant_MAPI_CLSID" data-toggle="collapse" data-target=".constant_MAPI_CLSID .collapse">
+                                <h2>MAPI_CLSID</h2>
+                                <pre>MAPI_CLSID</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_MAPI_BINARY"> </a>
+                            <div class="element clickable constant  constant_MAPI_BINARY" data-toggle="collapse" data-target=".constant_MAPI_BINARY .collapse">
+                                <h2>MAPI_BINARY</h2>
+                                <pre>MAPI_BINARY</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_MAPI_ATTACH_LONG_FILENAME"> </a>
+                            <div class="element clickable constant  constant_MAPI_ATTACH_LONG_FILENAME" data-toggle="collapse" data-target=".constant_MAPI_ATTACH_LONG_FILENAME .collapse">
+                                <h2>MAPI_ATTACH_LONG_FILENAME</h2>
+                                <pre>MAPI_ATTACH_LONG_FILENAME</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_MAPI_ATTACH_MIME_TAG"> </a>
+                            <div class="element clickable constant  constant_MAPI_ATTACH_MIME_TAG" data-toggle="collapse" data-target=".constant_MAPI_ATTACH_MIME_TAG .collapse">
+                                <h2>MAPI_ATTACH_MIME_TAG</h2>
+                                <pre>MAPI_ATTACH_MIME_TAG</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_MAPI_NAMED_TYPE_ID"> </a>
+                            <div class="element clickable constant  constant_MAPI_NAMED_TYPE_ID" data-toggle="collapse" data-target=".constant_MAPI_NAMED_TYPE_ID .collapse">
+                                <h2>MAPI_NAMED_TYPE_ID</h2>
+                                <pre>MAPI_NAMED_TYPE_ID</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_MAPI_NAMED_TYPE_STRING"> </a>
+                            <div class="element clickable constant  constant_MAPI_NAMED_TYPE_STRING" data-toggle="collapse" data-target=".constant_MAPI_NAMED_TYPE_STRING .collapse">
+                                <h2>MAPI_NAMED_TYPE_STRING</h2>
+                                <pre>MAPI_NAMED_TYPE_STRING</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_MAPI_MV_FLAG"> </a>
+                            <div class="element clickable constant  constant_MAPI_MV_FLAG" data-toggle="collapse" data-target=".constant_MAPI_MV_FLAG .collapse">
+                                <h2>MAPI_MV_FLAG</h2>
+                                <pre>MAPI_MV_FLAG</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                            
+                                                        </div>
+            </div>
+            <a id="\rcube_tnef_decoder"></a>
+            <ul class="breadcrumb">
+                <li><a href="../index.html"><i class="icon-custom icon-class"></i></a></li>
+                    
+    
+    <li><span class="divider">\</span><a href="../namespaces/default.html">\</a></li>
+
+                <li class="active"><span class="divider">\</span><a href="../classes/rcube_tnef_decoder.html">rcube_tnef_decoder</a></li>
+            </ul>
+        </div>
+    </div>
+
+    </div>
+
+        <footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
+            <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
+            generated on Sun, 08 Feb 2015 14:49:23 +0100.<br/>
+    </footer>
+    </body>
+</html>

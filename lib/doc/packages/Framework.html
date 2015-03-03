@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>     &raquo; \Framework
+</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+            <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+            <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+        <![endif]-->
+        <script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script>
+        <script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script>
+        <script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script>
+        <script src="../js/bootstrap.js" type="text/javascript"></script>
+        <script src="../js/template.js" type="text/javascript"></script>
+        <script src="../js/prettify/prettify.min.js" type="text/javascript"></script>
+    
+            <link rel="shortcut icon" href="../img/favicon.ico"/>
+        <link rel="apple-touch-icon" href="../img/apple-touch-icon.png"/>
+        <link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png"/>
+        <link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png"/>
+    </head>
+<body>
+
+        <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span> <span class="icon-bar"></span>
+                    <span class="icon-bar"></span> </a>
+                <a class="brand" href="../index.html">Roundcube Framework</a>
+
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li class="dropdown">
+                            <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                API Documentation <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                                                                            </ul>
+                        </li>
+                        <li class="dropdown" id="charts-menu">
+                            <a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                Charts <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../graph_class.html">
+                                        <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown" id="reports-menu">
+                            <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                Reports <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../errors.html">
+                                        <i class="icon-list-alt"></i>&#160;Errors
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../markers.html">
+                                        <i class="icon-list-alt"></i>&#160;Markers
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../deprecated.html">
+                                        <i class="icon-list-alt"></i>&#160;Deprecated
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="go_to_top">
+            <a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>
+        </div>
+    </div>
+    
+    <div id="___" class="container">
+        <noscript>
+            <div class="alert alert-warning">
+                Javascript is disabled; several features are only available if Javascript is enabled.
+            </div>
+        </noscript>
+
+        
+            
+    <div class="row">
+
+        <div class="span4">
+            <div class="btn-group view pull-right" data-toggle="buttons-radio">
+                <button class="btn details" title="Show descriptions and method names">
+                    <i class="icon-list"></i></button><button class="btn simple" title="Show only method names">
+                    <i class="icon-align-justify"></i>
+                </button>
+            </div>
+            <ul class="side-nav nav nav-list">
+                <li class="nav-header">
+                    <i class="icon-map-marker"></i> Packages
+                </li>
+                    
+        <li>
+        <a href="../packages/Framework.View.html" title="View">
+            <i class="icon-th"></i> View
+        </a>
+        <ul class="nav nav-list nav-packages">
+                
+    
+        </ul>
+    </li>
+        <li>
+        <a href="../packages/Framework.Core.html" title="Core">
+            <i class="icon-th"></i> Core
+        </a>
+        <ul class="nav nav-list nav-packages">
+                
+    
+        </ul>
+    </li>
+        <li>
+        <a href="../packages/Framework.Addressbook.html" title="Addressbook">
+            <i class="icon-th"></i> Addressbook
+        </a>
+        <ul class="nav nav-list nav-packages">
+                
+    
+        </ul>
+    </li>
+        <li>
+        <a href="../packages/Framework.Utils.html" title="Utils">
+            <i class="icon-th"></i> Utils
+        </a>
+        <ul class="nav nav-list nav-packages">
+                
+    
+        </ul>
+    </li>
+        <li>
+        <a href="../packages/Framework.Cache.html" title="Cache">
+            <i class="icon-th"></i> Cache
+        </a>
+        <ul class="nav nav-list nav-packages">
+                
+    
+        </ul>
+    </li>
+        <li>
+        <a href="../packages/Framework.Database.html" title="Database">
+            <i class="icon-th"></i> Database
+        </a>
+        <ul class="nav nav-list nav-packages">
+                
+    
+        </ul>
+    </li>
+        <li>
+        <a href="../packages/Framework.Storage.html" title="Storage">
+            <i class="icon-th"></i> Storage
+        </a>
+        <ul class="nav nav-list nav-packages">
+                
+    
+        </ul>
+    </li>
+        <li>
+        <a href="../packages/Framework.LDAP.html" title="LDAP">
+            <i class="icon-th"></i> LDAP
+        </a>
+        <ul class="nav nav-list nav-packages">
+                
+    
+        </ul>
+    </li>
+        <li>
+        <a href="../packages/Framework.PluginAPI.html" title="PluginAPI">
+            <i class="icon-th"></i> PluginAPI
+        </a>
+        <ul class="nav nav-list nav-packages">
+                
+    
+        </ul>
+    </li>
+        <li>
+        <a href="../packages/Framework.Mail.html" title="Mail">
+            <i class="icon-th"></i> Mail
+        </a>
+        <ul class="nav nav-list nav-packages">
+                
+    
+        </ul>
+    </li>
+    
+            </ul>
+        </div>
+
+        <div class="span8 package-contents">
+                
+    
+        <ul class="breadcrumb">
+            <li><a href="../index.html"><i class="icon-th"></i></a></li>
+                
+                
+    
+    <li>
+        <span class="divider">\</span><a href="../packages/default.html"></a>
+    </li>
+
+    
+    <li>
+        <span class="divider">\</span><a href="../packages/Framework.html">Framework</a>
+    </li>
+
+        </ul>
+
+                    <div class="package-indent">
+                <h3><i class="icon-custom icon-function"></i> Functions</h3>
+                                        <div id="in_array_nocase" class="element ajax clickable function">
+        <h1>in_array_nocase<a href="../namespaces/.html#function_in_array_nocase">¶</a></h1>
+        <p class="short_description">Similar function as in_array() but case-insensitive</p>
+        <div class="details collapse"></div>
+        <a href="../namespaces/.html#function_in_array_nocase" class="more">« More »</a>
+    </div>
+
+                                        <div id="parse_bytes" class="element ajax clickable function">
+        <h1>parse_bytes<a href="../namespaces/.html#function_parse_bytes">¶</a></h1>
+        <p class="short_description">Parse a human readable string for a number of bytes.</p>
+        <div class="details collapse"></div>
+        <a href="../namespaces/.html#function_parse_bytes" class="more">« More »</a>
+    </div>
+
+                                        <div id="slashify" class="element ajax clickable function">
+        <h1>slashify<a href="../namespaces/.html#function_slashify">¶</a></h1>
+        <p class="short_description">Make sure the string ends with a slash</p>
+        <div class="details collapse"></div>
+        <a href="../namespaces/.html#function_slashify" class="more">« More »</a>
+    </div>
+
+                                        <div id="unslashify" class="element ajax clickable function">
+        <h1>unslashify<a href="../namespaces/.html#function_unslashify">¶</a></h1>
+        <p class="short_description">Remove slashes at the end of the string</p>
+        <div class="details collapse"></div>
+        <a href="../namespaces/.html#function_unslashify" class="more">« More »</a>
+    </div>
+
+                                        <div id="get_offset_sec" class="element ajax clickable function">
+        <h1>get_offset_sec<a href="../namespaces/.html#function_get_offset_sec">¶</a></h1>
+        <p class="short_description">Returns number of seconds for a specified offset string.</p>
+        <div class="details collapse"></div>
+        <a href="../namespaces/.html#function_get_offset_sec" class="more">« More »</a>
+    </div>
+
+                                        <div id="get_offset_time" class="element ajax clickable function">
+        <h1>get_offset_time<a href="../namespaces/.html#function_get_offset_time">¶</a></h1>
+        <p class="short_description">Create a unix timestamp with a specified offset from now.</p>
+        <div class="details collapse"></div>
+        <a href="../namespaces/.html#function_get_offset_time" class="more">« More »</a>
+    </div>
+
+                                        <div id="abbreviate_string" class="element ajax clickable function">
+        <h1>abbreviate_string<a href="../namespaces/.html#function_abbreviate_string">¶</a></h1>
+        <p class="short_description">Truncate string if it is longer than the allowed length.</p>
+        <div class="details collapse">Replace the middle or the ending part of a string with a placeholder.</div>
+        <a href="../namespaces/.html#function_abbreviate_string" class="more">« More »</a>
+    </div>
+
+                                        <div id="array_keys_recursive" class="element ajax clickable function">
+        <h1>array_keys_recursive<a href="../namespaces/.html#function_array_keys_recursive">¶</a></h1>
+        <p class="short_description">Get all keys from array (recursive).</p>
+        <div class="details collapse"></div>
+        <a href="../namespaces/.html#function_array_keys_recursive" class="more">« More »</a>
+    </div>
+
+                                        <div id="asciiwords" class="element ajax clickable function">
+        <h1>asciiwords<a href="../namespaces/.html#function_asciiwords">¶</a></h1>
+        <p class="short_description">Remove all non-ascii and non-word chars except ., -, _</p>
+        <div class="details collapse"></div>
+        <a href="../namespaces/.html#function_asciiwords" class="more">« More »</a>
+    </div>
+
+                                        <div id="is_ascii" class="element ajax clickable function">
+        <h1>is_ascii<a href="../namespaces/.html#function_is_ascii">¶</a></h1>
+        <p class="short_description">Check if a string contains only ascii characters</p>
+        <div class="details collapse"></div>
+        <a href="../namespaces/.html#function_is_ascii" class="more">« More »</a>
+    </div>
+
+                                        <div id="format_email_recipient" class="element ajax clickable function">
+        <h1>format_email_recipient<a href="../namespaces/.html#function_format_email_recipient">¶</a></h1>
+        <p class="short_description">Compose a valid representation of name and e-mail address</p>
+        <div class="details collapse"></div>
+        <a href="../namespaces/.html#function_format_email_recipient" class="more">« More »</a>
+    </div>
+
+                                        <div id="format_email" class="element ajax clickable function">
+        <h1>format_email<a href="../namespaces/.html#function_format_email">¶</a></h1>
+        <p class="short_description">Format e-mail address</p>
+        <div class="details collapse"></div>
+        <a href="../namespaces/.html#function_format_email" class="more">« More »</a>
+    </div>
+
+                                        <div id="version_parse" class="element ajax clickable function">
+        <h1>version_parse<a href="../namespaces/.html#function_version_parse">¶</a></h1>
+        <p class="short_description">Fix version number so it can be used correctly in version_compare()</p>
+        <div class="details collapse"></div>
+        <a href="../namespaces/.html#function_version_parse" class="more">« More »</a>
+    </div>
+
+                                        <div id="mb_strlen" class="element ajax clickable function">
+        <h1>mb_strlen<a href="../namespaces/.html#function_mb_strlen">¶</a></h1>
+        <p class="short_description"></p>
+        <div class="details collapse"></div>
+        <a href="../namespaces/.html#function_mb_strlen" class="more">« More »</a>
+    </div>
+
+                                        <div id="mb_strtolower" class="element ajax clickable function">
+        <h1>mb_strtolower<a href="../namespaces/.html#function_mb_strtolower">¶</a></h1>
+        <p class="short_description"></p>
+        <div class="details collapse"></div>
+        <a href="../namespaces/.html#function_mb_strtolower" class="more">« More »</a>
+    </div>
+
+                                        <div id="mb_strtoupper" class="element ajax clickable function">
+        <h1>mb_strtoupper<a href="../namespaces/.html#function_mb_strtoupper">¶</a></h1>
+        <p class="short_description"></p>
+        <div class="details collapse"></div>
+        <a href="../namespaces/.html#function_mb_strtoupper" class="more">« More »</a>
+    </div>
+
+                                        <div id="mb_substr" class="element ajax clickable function">
+        <h1>mb_substr<a href="../namespaces/.html#function_mb_substr">¶</a></h1>
+        <p class="short_description"></p>
+        <div class="details collapse"></div>
+        <a href="../namespaces/.html#function_mb_substr" class="more">« More »</a>
+    </div>
+
+                                        <div id="mb_strpos" class="element ajax clickable function">
+        <h1>mb_strpos<a href="../namespaces/.html#function_mb_strpos">¶</a></h1>
+        <p class="short_description"></p>
+        <div class="details collapse"></div>
+        <a href="../namespaces/.html#function_mb_strpos" class="more">« More »</a>
+    </div>
+
+                                        <div id="mb_strrpos" class="element ajax clickable function">
+        <h1>mb_strrpos<a href="../namespaces/.html#function_mb_strrpos">¶</a></h1>
+        <p class="short_description"></p>
+        <div class="details collapse"></div>
+        <a href="../namespaces/.html#function_mb_strrpos" class="more">« More »</a>
+    </div>
+
+                                        <div id="idn_to_utf8" class="element ajax clickable function">
+        <h1>idn_to_utf8<a href="../namespaces/.html#function_idn_to_utf8">¶</a></h1>
+        <p class="short_description"></p>
+        <div class="details collapse"></div>
+        <a href="../namespaces/.html#function_idn_to_utf8" class="more">« More »</a>
+    </div>
+
+                                        <div id="idn_to_ascii" class="element ajax clickable function">
+        <h1>idn_to_ascii<a href="../namespaces/.html#function_idn_to_ascii">¶</a></h1>
+        <p class="short_description"></p>
+        <div class="details collapse"></div>
+        <a href="../namespaces/.html#function_idn_to_ascii" class="more">« More »</a>
+    </div>
+
+                                        <div id="rcube_autoload" class="element ajax clickable function">
+        <h1>rcube_autoload<a href="../namespaces/.html#function_rcube_autoload">¶</a></h1>
+        <p class="short_description">Use PHP5 autoload for dynamic class loading</p>
+        <div class="details collapse"></div>
+        <a href="../namespaces/.html#function_rcube_autoload" class="more">« More »</a>
+    </div>
+
+                                        <div id="rcube_pear_error" class="element ajax clickable function">
+        <h1>rcube_pear_error<a href="../namespaces/.html#function_rcube_pear_error">¶</a></h1>
+        <p class="short_description">Local callback function for PEAR errors</p>
+        <div class="details collapse"></div>
+        <a href="../namespaces/.html#function_rcube_pear_error" class="more">« More »</a>
+    </div>
+
+                            </div>
+        
+                    <div class="package-indent">
+                <h3><i class="icon-custom icon-constant"></i> Constants</h3>
+                                        <div id="RCUBE_VERSION" class="element ajax clickable constant">
+        <h1>RCUBE_VERSION<a href="../namespaces/.html#constant_RCUBE_VERSION">¶</a></h1>
+        <p class="short_description"></p>
+        <div class="details collapse"></div>
+        <a href="../namespaces/.html#constant_RCUBE_VERSION" class="more">« More »</a>
+    </div>
+
+                                        <div id="RCUBE_CHARSET" class="element ajax clickable constant">
+        <h1>RCUBE_CHARSET<a href="../namespaces/.html#constant_RCUBE_CHARSET">¶</a></h1>
+        <p class="short_description"></p>
+        <div class="details collapse"></div>
+        <a href="../namespaces/.html#constant_RCUBE_CHARSET" class="more">« More »</a>
+    </div>
+
+                                        <div id="RCUBE_LIB_DIR" class="element ajax clickable constant">
+        <h1>RCUBE_LIB_DIR<a href="../namespaces/.html#constant_RCUBE_LIB_DIR">¶</a></h1>
+        <p class="short_description"></p>
+        <div class="details collapse"></div>
+        <a href="../namespaces/.html#constant_RCUBE_LIB_DIR" class="more">« More »</a>
+    </div>
+
+                                        <div id="RCUBE_INSTALL_PATH" class="element ajax clickable constant">
+        <h1>RCUBE_INSTALL_PATH<a href="../namespaces/.html#constant_RCUBE_INSTALL_PATH">¶</a></h1>
+        <p class="short_description"></p>
+        <div class="details collapse"></div>
+        <a href="../namespaces/.html#constant_RCUBE_INSTALL_PATH" class="more">« More »</a>
+    </div>
+
+                                        <div id="RCUBE_CONFIG_DIR" class="element ajax clickable constant">
+        <h1>RCUBE_CONFIG_DIR<a href="../namespaces/.html#constant_RCUBE_CONFIG_DIR">¶</a></h1>
+        <p class="short_description"></p>
+        <div class="details collapse"></div>
+        <a href="../namespaces/.html#constant_RCUBE_CONFIG_DIR" class="more">« More »</a>
+    </div>
+
+                                        <div id="RCUBE_PLUGINS_DIR" class="element ajax clickable constant">
+        <h1>RCUBE_PLUGINS_DIR<a href="../namespaces/.html#constant_RCUBE_PLUGINS_DIR">¶</a></h1>
+        <p class="short_description"></p>
+        <div class="details collapse"></div>
+        <a href="../namespaces/.html#constant_RCUBE_PLUGINS_DIR" class="more">« More »</a>
+    </div>
+
+                                        <div id="RCUBE_LOCALIZATION_DIR" class="element ajax clickable constant">
+        <h1>RCUBE_LOCALIZATION_DIR<a href="../namespaces/.html#constant_RCUBE_LOCALIZATION_DIR">¶</a></h1>
+        <p class="short_description"></p>
+        <div class="details collapse"></div>
+        <a href="../namespaces/.html#constant_RCUBE_LOCALIZATION_DIR" class="more">« More »</a>
+    </div>
+
+                                        <div id="RCUBE_PLUGINS_DIR" class="element ajax clickable constant">
+        <h1>RCUBE_PLUGINS_DIR<a href="../namespaces/.html#constant_RCUBE_PLUGINS_DIR">¶</a></h1>
+        <p class="short_description"></p>
+        <div class="details collapse"></div>
+        <a href="../namespaces/.html#constant_RCUBE_PLUGINS_DIR" class="more">« More »</a>
+    </div>
+
+                            </div>
+        
+                    <div class="package-indent">
+                <h3><i class="icon-custom icon-class"></i> Classes, interfaces and traits</h3>
+                
+                
+                                        <div id="rcube_imap_search_job" class="element ajax clickable class">
+        <h1>rcube_imap_search_job<a href="../classes/rcube_imap_search_job.html">¶</a></h1>
+        <p class="short_description">Stackable item to run the search on a specific IMAP folder</p>
+        <div class="details collapse"></div>
+        <a href="../classes/rcube_imap_search_job.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="rcube_ldap_result" class="element ajax clickable class">
+        <h1>rcube_ldap_result<a href="../classes/rcube_ldap_result.html">¶</a></h1>
+        <p class="short_description"></p>
+        <div class="details collapse"></div>
+        <a href="../classes/rcube_ldap_result.html" class="more">« More »</a>
+    </div>
+
+                            </div>
+            
+                
+    
+        <ul class="breadcrumb">
+            <li><a href="../index.html"><i class="icon-th"></i></a></li>
+                
+                
+                
+    
+    <li>
+        <span class="divider">\</span><a href="../packages/default.html"></a>
+    </li>
+
+    
+    <li>
+        <span class="divider">\</span><a href="../packages/Framework.html">Framework</a>
+    </li>
+
+    
+    <li>
+        <span class="divider">\</span><a href="../packages/Framework.View.html">View</a>
+    </li>
+
+        </ul>
+
+        
+        
+                    <div class="package-indent">
+                <h3><i class="icon-custom icon-class"></i> Classes, interfaces and traits</h3>
+                
+                
+                                        <div id="html" class="element ajax clickable class">
+        <h1>html<a href="../classes/html.html">¶</a></h1>
+        <p class="short_description">Class for HTML code creation</p>
+        <div class="details collapse"></div>
+        <a href="../classes/html.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="html_inputfield" class="element ajax clickable class">
+        <h1>html_inputfield<a href="../classes/html_inputfield.html">¶</a></h1>
+        <p class="short_description">Class to create an HTML input field</p>
+        <div class="details collapse"></div>
+        <a href="../classes/html_inputfield.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="html_passwordfield" class="element ajax clickable class">
+        <h1>html_passwordfield<a href="../classes/html_passwordfield.html">¶</a></h1>
+        <p class="short_description">Class to create an HTML password field</p>
+        <div class="details collapse"></div>
+        <a href="../classes/html_passwordfield.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="html_hiddenfield" class="element ajax clickable class">
+        <h1>html_hiddenfield<a href="../classes/html_hiddenfield.html">¶</a></h1>
+        <p class="short_description">Class to create an hidden HTML input field</p>
+        <div class="details collapse"></div>
+        <a href="../classes/html_hiddenfield.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="html_radiobutton" class="element ajax clickable class">
+        <h1>html_radiobutton<a href="../classes/html_radiobutton.html">¶</a></h1>
+        <p class="short_description">Class to create HTML radio buttons</p>
+        <div class="details collapse"></div>
+        <a href="../classes/html_radiobutton.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="html_checkbox" class="element ajax clickable class">
+        <h1>html_checkbox<a href="../classes/html_checkbox.html">¶</a></h1>
+        <p class="short_description">Class to create HTML checkboxes</p>
+        <div class="details collapse"></div>
+        <a href="../classes/html_checkbox.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="html_textarea" class="element ajax clickable class">
+        <h1>html_textarea<a href="../classes/html_textarea.html">¶</a></h1>
+        <p class="short_description">Class to create an HTML textarea</p>
+        <div class="details collapse"></div>
+        <a href="../classes/html_textarea.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="html_select" class="element ajax clickable class">
+        <h1>html_select<a href="../classes/html_select.html">¶</a></h1>
+        <p class="short_description">Builder for HTML drop-down menus
+Syntax:&lt;pre&gt;
+// create instance. arguments are used to set attributes of select-tag
+$select = new html_select(array(&#039;name&#039; =&gt; &#039;fieldname&#039;));</p>
+        <div class="details collapse">// add one option
+$select-&gt;add(&#039;Switzerland&#039;, &#039;CH&#039;);
+
+// add multiple options
+$select-&gt;add(array(&#039;Switzerland&#039;,&#039;Germany&#039;), array(&#039;CH&#039;,&#039;DE&#039;));
+
+// generate pulldown with selection &#039;Switzerland&#039;  and return html-code
+// as second argument the same attributes available to instanciate can be used
+print $select-&gt;show(&#039;CH&#039;);
+&lt;/pre&gt;</div>
+        <a href="../classes/html_select.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="html_table" class="element ajax clickable class">
+        <h1>html_table<a href="../classes/html_table.html">¶</a></h1>
+        <p class="short_description">Class to build an HTML table</p>
+        <div class="details collapse"></div>
+        <a href="../classes/html_table.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="rcube_output" class="element ajax clickable class">
+        <h1>rcube_output<a href="../classes/rcube_output.html">¶</a></h1>
+        <p class="short_description">Class for output generation</p>
+        <div class="details collapse"></div>
+        <a href="../classes/rcube_output.html" class="more">« More »</a>
+    </div>
+
+                            </div>
+            
+    
+                
+    
+        <ul class="breadcrumb">
+            <li><a href="../index.html"><i class="icon-th"></i></a></li>
+                
+                
+                
+    
+    <li>
+        <span class="divider">\</span><a href="../packages/default.html"></a>
+    </li>
+
+    
+    <li>
+        <span class="divider">\</span><a href="../packages/Framework.html">Framework</a>
+    </li>
+
+    
+    <li>
+        <span class="divider">\</span><a href="../packages/Framework.Core.html">Core</a>
+    </li>
+
+        </ul>
+
+        
+        
+                    <div class="package-indent">
+                <h3><i class="icon-custom icon-class"></i> Classes, interfaces and traits</h3>
+                
+                
+                                        <div id="rcube" class="element ajax clickable class">
+        <h1>rcube<a href="../classes/rcube.html">¶</a></h1>
+        <p class="short_description">Base class of the Roundcube Framework
+implemented as singleton</p>
+        <div class="details collapse"></div>
+        <a href="../classes/rcube.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="rcube_dummy_plugin_api" class="element ajax clickable class">
+        <h1>rcube_dummy_plugin_api<a href="../classes/rcube_dummy_plugin_api.html">¶</a></h1>
+        <p class="short_description">Lightweight plugin API class serving as a dummy if plugins are not enabled</p>
+        <div class="details collapse"></div>
+        <a href="../classes/rcube_dummy_plugin_api.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="rcube_charset" class="element ajax clickable class">
+        <h1>rcube_charset<a href="../classes/rcube_charset.html">¶</a></h1>
+        <p class="short_description">Character sets conversion functionality</p>
+        <div class="details collapse"></div>
+        <a href="../classes/rcube_charset.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="rcube_config" class="element ajax clickable class">
+        <h1>rcube_config<a href="../classes/rcube_config.html">¶</a></h1>
+        <p class="short_description">Configuration class for Roundcube</p>
+        <div class="details collapse"></div>
+        <a href="../classes/rcube_config.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="rcube_session" class="element ajax clickable class">
+        <h1>rcube_session<a href="../classes/rcube_session.html">¶</a></h1>
+        <p class="short_description">Class to provide database supported session storage</p>
+        <div class="details collapse"></div>
+        <a href="../classes/rcube_session.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="rcube_user" class="element ajax clickable class">
+        <h1>rcube_user<a href="../classes/rcube_user.html">¶</a></h1>
+        <p class="short_description">Class representing a system user</p>
+        <div class="details collapse"></div>
+        <a href="../classes/rcube_user.html" class="more">« More »</a>
+    </div>
+
+                            </div>
+            
+    
+                
+    
+        <ul class="breadcrumb">
+            <li><a href="../index.html"><i class="icon-th"></i></a></li>
+                
+                
+                
+    
+    <li>
+        <span class="divider">\</span><a href="../packages/default.html"></a>
+    </li>
+
+    
+    <li>
+        <span class="divider">\</span><a href="../packages/Framework.html">Framework</a>
+    </li>
+
+    
+    <li>
+        <span class="divider">\</span><a href="../packages/Framework.Addressbook.html">Addressbook</a>
+    </li>
+
+        </ul>
+
+        
+        
+                    <div class="package-indent">
+                <h3><i class="icon-custom icon-class"></i> Classes, interfaces and traits</h3>
+                
+                
+                                        <div id="rcube_addressbook" class="element ajax clickable class">
+        <h1>rcube_addressbook<a href="../classes/rcube_addressbook.html">¶</a></h1>
+        <p class="short_description">Abstract skeleton of an address book/repository</p>
+        <div class="details collapse"></div>
+        <a href="../classes/rcube_addressbook.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="rcube_contacts" class="element ajax clickable class">
+        <h1>rcube_contacts<a href="../classes/rcube_contacts.html">¶</a></h1>
+        <p class="short_description">Model class for the local address book database</p>
+        <div class="details collapse"></div>
+        <a href="../classes/rcube_contacts.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="rcube_csv2vcard" class="element ajax clickable class">
+        <h1>rcube_csv2vcard<a href="../classes/rcube_csv2vcard.html">¶</a></h1>
+        <p class="short_description">CSV to vCard data converter</p>
+        <div class="details collapse"></div>
+        <a href="../classes/rcube_csv2vcard.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="rcube_ldap" class="element ajax clickable class">
+        <h1>rcube_ldap<a href="../classes/rcube_ldap.html">¶</a></h1>
+        <p class="short_description">Model class to access an LDAP address directory</p>
+        <div class="details collapse"></div>
+        <a href="../classes/rcube_ldap.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="rcube_result_set" class="element ajax clickable class">
+        <h1>rcube_result_set<a href="../classes/rcube_result_set.html">¶</a></h1>
+        <p class="short_description">Roundcube result set class</p>
+        <div class="details collapse">Representing an address directory result set.
+Implenets Iterator and thus be used in foreach() loops.</div>
+        <a href="../classes/rcube_result_set.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="rcube_vcard" class="element ajax clickable class">
+        <h1>rcube_vcard<a href="../classes/rcube_vcard.html">¶</a></h1>
+        <p class="short_description">Logical representation of a vcard-based address record
+Provides functions to parse and export vCard data format</p>
+        <div class="details collapse"></div>
+        <a href="../classes/rcube_vcard.html" class="more">« More »</a>
+    </div>
+
+                            </div>
+            
+    
+                
+    
+        <ul class="breadcrumb">
+            <li><a href="../index.html"><i class="icon-th"></i></a></li>
+                
+                
+                
+    
+    <li>
+        <span class="divider">\</span><a href="../packages/default.html"></a>
+    </li>
+
+    
+    <li>
+        <span class="divider">\</span><a href="../packages/Framework.html">Framework</a>
+    </li>
+
+    
+    <li>
+        <span class="divider">\</span><a href="../packages/Framework.Utils.html">Utils</a>
+    </li>
+
+        </ul>
+
+        
+        
+                    <div class="package-indent">
+                <h3><i class="icon-custom icon-class"></i> Classes, interfaces and traits</h3>
+                
+                
+                                        <div id="rcube_base_replacer" class="element ajax clickable class">
+        <h1>rcube_base_replacer<a href="../classes/rcube_base_replacer.html">¶</a></h1>
+        <p class="short_description">Helper class to turn relative urls into absolute ones
+using a predefined base</p>
+        <div class="details collapse"></div>
+        <a href="../classes/rcube_base_replacer.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="rcube_browser" class="element ajax clickable class">
+        <h1>rcube_browser<a href="../classes/rcube_browser.html">¶</a></h1>
+        <p class="short_description">Provide details about the client&#039;s browser based on the User-Agent header</p>
+        <div class="details collapse"></div>
+        <a href="../classes/rcube_browser.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="rcube_content_filter" class="element ajax clickable class">
+        <h1>rcube_content_filter<a href="../classes/rcube_content_filter.html">¶</a></h1>
+        <p class="short_description">PHP stream filter to detect html/javascript code in attachments</p>
+        <div class="details collapse"></div>
+        <a href="../classes/rcube_content_filter.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="rcube_enriched" class="element ajax clickable class">
+        <h1>rcube_enriched<a href="../classes/rcube_enriched.html">¶</a></h1>
+        <p class="short_description">Class for Enriched to HTML conversion</p>
+        <div class="details collapse"></div>
+        <a href="../classes/rcube_enriched.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="rcube_html2text" class="element ajax clickable class">
+        <h1>rcube_html2text<a href="../classes/rcube_html2text.html">¶</a></h1>
+        <p class="short_description">Converts HTML to formatted plain text</p>
+        <div class="details collapse"></div>
+        <a href="../classes/rcube_html2text.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="rcube_image" class="element ajax clickable class">
+        <h1>rcube_image<a href="../classes/rcube_image.html">¶</a></h1>
+        <p class="short_description">Image resizer and converter</p>
+        <div class="details collapse"></div>
+        <a href="../classes/rcube_image.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="rcube_spellcheck_atd" class="element ajax clickable class">
+        <h1>rcube_spellcheck_atd<a href="../classes/rcube_spellcheck_atd.html">¶</a></h1>
+        <p class="short_description">Spellchecking backend implementation to work with an After the Deadline service
+See http://www.afterthedeadline.com/ for more information</p>
+        <div class="details collapse"></div>
+        <a href="../classes/rcube_spellcheck_atd.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="rcube_spellcheck_enchant" class="element ajax clickable class">
+        <h1>rcube_spellcheck_enchant<a href="../classes/rcube_spellcheck_enchant.html">¶</a></h1>
+        <p class="short_description">Spellchecking backend implementation to work with Pspell</p>
+        <div class="details collapse"></div>
+        <a href="../classes/rcube_spellcheck_enchant.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="rcube_spellcheck_engine" class="element ajax clickable class">
+        <h1>rcube_spellcheck_engine<a href="../classes/rcube_spellcheck_engine.html">¶</a></h1>
+        <p class="short_description">Interface class for a spell-checking backend</p>
+        <div class="details collapse"></div>
+        <a href="../classes/rcube_spellcheck_engine.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="rcube_spellcheck_googie" class="element ajax clickable class">
+        <h1>rcube_spellcheck_googie<a href="../classes/rcube_spellcheck_googie.html">¶</a></h1>
+        <p class="short_description">Spellchecking backend implementation to work with a Googiespell service</p>
+        <div class="details collapse"></div>
+        <a href="../classes/rcube_spellcheck_googie.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="rcube_spellcheck_pspell" class="element ajax clickable class">
+        <h1>rcube_spellcheck_pspell<a href="../classes/rcube_spellcheck_pspell.html">¶</a></h1>
+        <p class="short_description">Spellchecking backend implementation to work with Pspell</p>
+        <div class="details collapse"></div>
+        <a href="../classes/rcube_spellcheck_pspell.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="rcube_spellchecker" class="element ajax clickable class">
+        <h1>rcube_spellchecker<a href="../classes/rcube_spellchecker.html">¶</a></h1>
+        <p class="short_description">Helper class for spellchecking with Googielspell and PSpell support.</p>
+        <div class="details collapse"></div>
+        <a href="../classes/rcube_spellchecker.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="rcube_string_replacer" class="element ajax clickable class">
+        <h1>rcube_string_replacer<a href="../classes/rcube_string_replacer.html">¶</a></h1>
+        <p class="short_description">Helper class for string replacements based on preg_replace_callback</p>
+        <div class="details collapse"></div>
+        <a href="../classes/rcube_string_replacer.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="rcube_text2html" class="element ajax clickable class">
+        <h1>rcube_text2html<a href="../classes/rcube_text2html.html">¶</a></h1>
+        <p class="short_description">Converts plain text to HTML</p>
+        <div class="details collapse"></div>
+        <a href="../classes/rcube_text2html.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="rcube_utils" class="element ajax clickable class">
+        <h1>rcube_utils<a href="../classes/rcube_utils.html">¶</a></h1>
+        <p class="short_description">Utility class providing common functions</p>
+        <div class="details collapse"></div>
+        <a href="../classes/rcube_utils.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="rcube_washtml" class="element ajax clickable class">
+        <h1>rcube_washtml<a href="../classes/rcube_washtml.html">¶</a></h1>
+        <p class="short_description">Utility class providing HTML sanityzer</p>
+        <div class="details collapse"></div>
+        <a href="../classes/rcube_washtml.html" class="more">« More »</a>
+    </div>
+
+                            </div>
+            
+    
+                
+    
+        <ul class="breadcrumb">
+            <li><a href="../index.html"><i class="icon-th"></i></a></li>
+                
+                
+                
+    
+    <li>
+        <span class="divider">\</span><a href="../packages/default.html"></a>
+    </li>
+
+    
+    <li>
+        <span class="divider">\</span><a href="../packages/Framework.html">Framework</a>
+    </li>
+
+    
+    <li>
+        <span class="divider">\</span><a href="../packages/Framework.Cache.html">Cache</a>
+    </li>
+
+        </ul>
+
+        
+        
+                    <div class="package-indent">
+                <h3><i class="icon-custom icon-class"></i> Classes, interfaces and traits</h3>
+                
+                
+                                        <div id="rcube_cache" class="element ajax clickable class">
+        <h1>rcube_cache<a href="../classes/rcube_cache.html">¶</a></h1>
+        <p class="short_description">Interface class for accessing Roundcube cache</p>
+        <div class="details collapse"></div>
+        <a href="../classes/rcube_cache.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="rcube_cache_shared" class="element ajax clickable class">
+        <h1>rcube_cache_shared<a href="../classes/rcube_cache_shared.html">¶</a></h1>
+        <p class="short_description">Interface class for accessing Roundcube shared cache</p>
+        <div class="details collapse"></div>
+        <a href="../classes/rcube_cache_shared.html" class="more">« More »</a>
+    </div>
+
+                            </div>
+            
+    
+                
+    
+        <ul class="breadcrumb">
+            <li><a href="../index.html"><i class="icon-th"></i></a></li>
+                
+                
+                
+    
+    <li>
+        <span class="divider">\</span><a href="../packages/default.html"></a>
+    </li>
+
+    
+    <li>
+        <span class="divider">\</span><a href="../packages/Framework.html">Framework</a>
+    </li>
+
+    
+    <li>
+        <span class="divider">\</span><a href="../packages/Framework.Database.html">Database</a>
+    </li>
+
+        </ul>
+
+        
+        
+                    <div class="package-indent">
+                <h3><i class="icon-custom icon-class"></i> Classes, interfaces and traits</h3>
+                
+                
+                                        <div id="rcube_db" class="element ajax clickable class">
+        <h1>rcube_db<a href="../classes/rcube_db.html">¶</a></h1>
+        <p class="short_description">Database independent query interface.</p>
+        <div class="details collapse">This is a wrapper for the PHP PDO.</div>
+        <a href="../classes/rcube_db.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="rcube_db_mssql" class="element ajax clickable class">
+        <h1>rcube_db_mssql<a href="../classes/rcube_db_mssql.html">¶</a></h1>
+        <p class="short_description">Database independent query interface
+This is a wrapper for the PHP PDO</p>
+        <div class="details collapse">This is a wrapper for the PHP PDO.</div>
+        <a href="../classes/rcube_db_mssql.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="rcube_db_mysql" class="element ajax clickable class">
+        <h1>rcube_db_mysql<a href="../classes/rcube_db_mysql.html">¶</a></h1>
+        <p class="short_description">Database independent query interface</p>
+        <div class="details collapse">This is a wrapper for the PHP PDO</div>
+        <a href="../classes/rcube_db_mysql.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="rcube_db_oracle" class="element ajax clickable class">
+        <h1>rcube_db_oracle<a href="../classes/rcube_db_oracle.html">¶</a></h1>
+        <p class="short_description">Database independent query interface</p>
+        <div class="details collapse">This is a wrapper for the PHP PDO.</div>
+        <a href="../classes/rcube_db_oracle.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="rcube_db_pgsql" class="element ajax clickable class">
+        <h1>rcube_db_pgsql<a href="../classes/rcube_db_pgsql.html">¶</a></h1>
+        <p class="short_description">Database independent query interface
+This is a wrapper for the PHP PDO</p>
+        <div class="details collapse">This is a wrapper for the PHP PDO.</div>
+        <a href="../classes/rcube_db_pgsql.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="rcube_db_sqlite" class="element ajax clickable class">
+        <h1>rcube_db_sqlite<a href="../classes/rcube_db_sqlite.html">¶</a></h1>
+        <p class="short_description">Database independent query interface
+This is a wrapper for the PHP PDO</p>
+        <div class="details collapse">This is a wrapper for the PHP PDO.</div>
+        <a href="../classes/rcube_db_sqlite.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="rcube_db_sqlsrv" class="element ajax clickable class">
+        <h1>rcube_db_sqlsrv<a href="../classes/rcube_db_sqlsrv.html">¶</a></h1>
+        <p class="short_description">Database independent query interface
+This is a wrapper for the PHP PDO</p>
+        <div class="details collapse">This is a wrapper for the PHP PDO.</div>
+        <a href="../classes/rcube_db_sqlsrv.html" class="more">« More »</a>
+    </div>
+
+                            </div>
+            
+    
+                
+    
+        <ul class="breadcrumb">
+            <li><a href="../index.html"><i class="icon-th"></i></a></li>
+                
+                
+                
+    
+    <li>
+        <span class="divider">\</span><a href="../packages/default.html"></a>
+    </li>
+
+    
+    <li>
+        <span class="divider">\</span><a href="../packages/Framework.html">Framework</a>
+    </li>
+
+    
+    <li>
+        <span class="divider">\</span><a href="../packages/Framework.Storage.html">Storage</a>
+    </li>
+
+        </ul>
+
+        
+        
+                    <div class="package-indent">
+                <h3><i class="icon-custom icon-class"></i> Classes, interfaces and traits</h3>
+                
+                
+                                        <div id="rcube_imap" class="element ajax clickable class">
+        <h1>rcube_imap<a href="../classes/rcube_imap.html">¶</a></h1>
+        <p class="short_description">Interface class for accessing an IMAP server</p>
+        <div class="details collapse"></div>
+        <a href="../classes/rcube_imap.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="rcube_imap_cache" class="element ajax clickable class">
+        <h1>rcube_imap_cache<a href="../classes/rcube_imap_cache.html">¶</a></h1>
+        <p class="short_description">Interface class for accessing Roundcube messages cache</p>
+        <div class="details collapse"></div>
+        <a href="../classes/rcube_imap_cache.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="rcube_mail_header" class="element ajax clickable class">
+        <h1>rcube_mail_header<a href="../classes/rcube_mail_header.html">¶</a></h1>
+        <p class="short_description">Struct representing an e-mail message header</p>
+        <div class="details collapse"></div>
+        <a href="../classes/rcube_mail_header.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="rcube_imap_generic" class="element ajax clickable class">
+        <h1>rcube_imap_generic<a href="../classes/rcube_imap_generic.html">¶</a></h1>
+        <p class="short_description">PHP based wrapper class to connect to an IMAP server</p>
+        <div class="details collapse"></div>
+        <a href="../classes/rcube_imap_generic.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="rcube_imap_search" class="element ajax clickable class">
+        <h1>rcube_imap_search<a href="../classes/rcube_imap_search.html">¶</a></h1>
+        <p class="short_description">Class to control search jobs on multiple IMAP folders.</p>
+        <div class="details collapse"></div>
+        <a href="../classes/rcube_imap_search.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="rcube_message" class="element ajax clickable class">
+        <h1>rcube_message<a href="../classes/rcube_message.html">¶</a></h1>
+        <p class="short_description">Logical representation of a mail message with all its data
+and related functions</p>
+        <div class="details collapse"></div>
+        <a href="../classes/rcube_message.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="rcube_message_header" class="element ajax clickable class">
+        <h1>rcube_message_header<a href="../classes/rcube_message_header.html">¶</a></h1>
+        <p class="short_description">Struct representing an e-mail message header</p>
+        <div class="details collapse"></div>
+        <a href="../classes/rcube_message_header.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="rcube_message_header_sorter" class="element ajax clickable class">
+        <h1>rcube_message_header_sorter<a href="../classes/rcube_message_header_sorter.html">¶</a></h1>
+        <p class="short_description">Class for sorting an array of rcube_message_header objects in a predetermined order.</p>
+        <div class="details collapse"></div>
+        <a href="../classes/rcube_message_header_sorter.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="rcube_message_part" class="element ajax clickable class">
+        <h1>rcube_message_part<a href="../classes/rcube_message_part.html">¶</a></h1>
+        <p class="short_description">Class representing a message part</p>
+        <div class="details collapse"></div>
+        <a href="../classes/rcube_message_part.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="rcube_mime" class="element ajax clickable class">
+        <h1>rcube_mime<a href="../classes/rcube_mime.html">¶</a></h1>
+        <p class="short_description">Class for parsing MIME messages</p>
+        <div class="details collapse"></div>
+        <a href="../classes/rcube_mime.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="rcube_result_index" class="element ajax clickable class">
+        <h1>rcube_result_index<a href="../classes/rcube_result_index.html">¶</a></h1>
+        <p class="short_description">Class for accessing IMAP&#039;s SORT/SEARCH/ESEARCH result</p>
+        <div class="details collapse"></div>
+        <a href="../classes/rcube_result_index.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="rcube_result_multifolder" class="element ajax clickable class">
+        <h1>rcube_result_multifolder<a href="../classes/rcube_result_multifolder.html">¶</a></h1>
+        <p class="short_description">Class holding a set of rcube_result_index instances that together form a
+result set of a multi-folder search</p>
+        <div class="details collapse"></div>
+        <a href="../classes/rcube_result_multifolder.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="rcube_result_thread" class="element ajax clickable class">
+        <h1>rcube_result_thread<a href="../classes/rcube_result_thread.html">¶</a></h1>
+        <p class="short_description">Class for accessing IMAP&#039;s THREAD result</p>
+        <div class="details collapse"></div>
+        <a href="../classes/rcube_result_thread.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="rcube_storage" class="element ajax clickable class">
+        <h1>rcube_storage<a href="../classes/rcube_storage.html">¶</a></h1>
+        <p class="short_description">Abstract class for accessing mail messages storage server</p>
+        <div class="details collapse"></div>
+        <a href="../classes/rcube_storage.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="rcube_tnef_decoder" class="element ajax clickable class">
+        <h1>rcube_tnef_decoder<a href="../classes/rcube_tnef_decoder.html">¶</a></h1>
+        <p class="short_description">MS-TNEF format decoder based on code by:
+  Graham Norbury &lt;gnorbury@bondcar.com&gt;
+Original design by:
+  Thomas Boll &lt;tb@boll.ch&gt;, Mark Simpson &lt;damned@world.std.com&gt;</p>
+        <div class="details collapse"></div>
+        <a href="../classes/rcube_tnef_decoder.html" class="more">« More »</a>
+    </div>
+
+                            </div>
+            
+    
+                
+    
+        <ul class="breadcrumb">
+            <li><a href="../index.html"><i class="icon-th"></i></a></li>
+                
+                
+                
+    
+    <li>
+        <span class="divider">\</span><a href="../packages/default.html"></a>
+    </li>
+
+    
+    <li>
+        <span class="divider">\</span><a href="../packages/Framework.html">Framework</a>
+    </li>
+
+    
+    <li>
+        <span class="divider">\</span><a href="../packages/Framework.LDAP.html">LDAP</a>
+    </li>
+
+        </ul>
+
+        
+        
+                    <div class="package-indent">
+                <h3><i class="icon-custom icon-class"></i> Classes, interfaces and traits</h3>
+                
+                
+                                        <div id="rcube_ldap_generic" class="element ajax clickable class">
+        <h1>rcube_ldap_generic<a href="../classes/rcube_ldap_generic.html">¶</a></h1>
+        <p class="short_description">Model class to access an LDAP directories</p>
+        <div class="details collapse"></div>
+        <a href="../classes/rcube_ldap_generic.html" class="more">« More »</a>
+    </div>
+
+                            </div>
+            
+    
+                
+    
+        <ul class="breadcrumb">
+            <li><a href="../index.html"><i class="icon-th"></i></a></li>
+                
+                
+                
+    
+    <li>
+        <span class="divider">\</span><a href="../packages/default.html"></a>
+    </li>
+
+    
+    <li>
+        <span class="divider">\</span><a href="../packages/Framework.html">Framework</a>
+    </li>
+
+    
+    <li>
+        <span class="divider">\</span><a href="../packages/Framework.PluginAPI.html">PluginAPI</a>
+    </li>
+
+        </ul>
+
+        
+        
+                    <div class="package-indent">
+                <h3><i class="icon-custom icon-class"></i> Classes, interfaces and traits</h3>
+                
+                
+                                        <div id="rcube_plugin" class="element ajax clickable class">
+        <h1>rcube_plugin<a href="../classes/rcube_plugin.html">¶</a></h1>
+        <p class="short_description">Plugin interface class</p>
+        <div class="details collapse"></div>
+        <a href="../classes/rcube_plugin.html" class="more">« More »</a>
+    </div>
+
+                                        <div id="rcube_plugin_api" class="element ajax clickable class">
+        <h1>rcube_plugin_api<a href="../classes/rcube_plugin_api.html">¶</a></h1>
+        <p class="short_description">The plugin loader and global API</p>
+        <div class="details collapse"></div>
+        <a href="../classes/rcube_plugin_api.html" class="more">« More »</a>
+    </div>
+
+                            </div>
+            
+    
+                
+    
+        <ul class="breadcrumb">
+            <li><a href="../index.html"><i class="icon-th"></i></a></li>
+                
+                
+                
+    
+    <li>
+        <span class="divider">\</span><a href="../packages/default.html"></a>
+    </li>
+
+    
+    <li>
+        <span class="divider">\</span><a href="../packages/Framework.html">Framework</a>
+    </li>
+
+    
+    <li>
+        <span class="divider">\</span><a href="../packages/Framework.Mail.html">Mail</a>
+    </li>
+
+        </ul>
+
+        
+        
+                    <div class="package-indent">
+                <h3><i class="icon-custom icon-class"></i> Classes, interfaces and traits</h3>
+                
+                
+                                        <div id="rcube_smtp" class="element ajax clickable class">
+        <h1>rcube_smtp<a href="../classes/rcube_smtp.html">¶</a></h1>
+        <p class="short_description">Class to provide SMTP functionality using PEAR Net_SMTP</p>
+        <div class="details collapse"></div>
+        <a href="../classes/rcube_smtp.html" class="more">« More »</a>
+    </div>
+
+                            </div>
+            
+    
+    
+        </div>
+    </div>
+    </div>
+
+        <footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
+            <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
+            generated on Sun, 08 Feb 2015 14:49:18 +0100.<br/>
+    </footer>
+    </body>
+</html>

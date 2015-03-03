@@ -1,0 +1,25 @@
+{
+    "name": "Maith/Common/RoundcubeBundle",
+    "type": "symfony-bundle",
+    "description": "This is the roundcube framework",
+    "keywords": ["admin", "bundle", "basic"],
+    "homepage": "https://github.com/rsantellan/symfony2-maith-roundcube",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rodrigo Santellan",
+            "email": "rsantellan@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.2"
+    },
+    "require-dev": {
+        "symfony/framework-bundle": "2.3.*"
+    },
+    "autoload": {
+        "psr-0": { "Maith\\Common\\RoundcubeBundle": "" }
+    },
+    "minimum-stability": "dev",
+    "target-dir": "Maith/Common/RoundcubeBundle"
+}

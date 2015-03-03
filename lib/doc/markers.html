@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>     &raquo; Markers
+</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+            <link href="css/template.css" rel="stylesheet" media="all"/>
+    
+            <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+        <![endif]-->
+        <script src="js/jquery-1.7.1.min.js" type="text/javascript"></script>
+        <script src="js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script>
+        <script src="js/jquery.mousewheel.min.js" type="text/javascript"></script>
+        <script src="js/bootstrap.js" type="text/javascript"></script>
+        <script src="js/template.js" type="text/javascript"></script>
+        <script src="js/prettify/prettify.min.js" type="text/javascript"></script>
+    
+            <link rel="shortcut icon" href="img/favicon.ico"/>
+        <link rel="apple-touch-icon" href="img/apple-touch-icon.png"/>
+        <link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png"/>
+        <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png"/>
+    </head>
+<body>
+
+        <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span> <span class="icon-bar"></span>
+                    <span class="icon-bar"></span> </a>
+                <a class="brand" href="index.html">Roundcube Framework</a>
+
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li class="dropdown">
+                            <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                API Documentation <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                                                                            </ul>
+                        </li>
+                        <li class="dropdown" id="charts-menu">
+                            <a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                Charts <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="graph_class.html">
+                                        <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown" id="reports-menu">
+                            <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                Reports <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="errors.html">
+                                        <i class="icon-list-alt"></i>&#160;Errors
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="markers.html">
+                                        <i class="icon-list-alt"></i>&#160;Markers
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="deprecated.html">
+                                        <i class="icon-list-alt"></i>&#160;Deprecated
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="go_to_top">
+            <a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>
+        </div>
+    </div>
+    
+    <div id="___" class="container">
+        <noscript>
+            <div class="alert alert-warning">
+                Javascript is disabled; several features are only available if Javascript is enabled.
+            </div>
+        </noscript>
+
+        
+            <div class="row">
+        <div class="span4">
+            <ul class="side-nav nav nav-list">
+                <li class="nav-header">Navigation</li>
+                                                                        <li><a href="#bootstrap.php"><i class="icon-file"></i> bootstrap.php</a></li>
+                                                                                                                                                        <li><a href="#rcube.php"><i class="icon-file"></i> rcube.php</a></li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                <li><a href="#rcube_config.php"><i class="icon-file"></i> rcube_config.php</a></li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <li><a href="#rcube_imap.php"><i class="icon-file"></i> rcube_imap.php</a></li>
+                                                                                                                                                        <li><a href="#rcube_imap_generic.php"><i class="icon-file"></i> rcube_imap_generic.php</a></li>
+                                                                                                <li><a href="#rcube_imap_search.php"><i class="icon-file"></i> rcube_imap_search.php</a></li>
+                                                                                                <li><a href="#rcube_ldap.php"><i class="icon-file"></i> rcube_ldap.php</a></li>
+                                                                                                                                                        <li><a href="#rcube_message.php"><i class="icon-file"></i> rcube_message.php</a></li>
+                                                                                                                                                                                                                                                                                                                                                                                        <li><a href="#rcube_plugin_api.php"><i class="icon-file"></i> rcube_plugin_api.php</a></li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <li><a href="#rcube_storage.php"><i class="icon-file"></i> rcube_storage.php</a></li>
+                                                                                                                                                                                                                                                                                                                                                                                        <li><a href="#rcube_vcard.php"><i class="icon-file"></i> rcube_vcard.php</a></li>
+                                                                                                                            </ul>
+        </div>
+
+        <div class="span8">
+
+            <ul class="breadcrumb">
+                <li><a href=""><i class="icon-map-marker"></i></a><span class="divider">\</span></li>
+                <li>Markers</li>
+            </ul>
+
+            
+            <div id="marker-accordion">
+                                                            <div class="package-contents">
+                            <a name="bootstrap.php" id="bootstrap.php"></a>
+                            <h3>
+                            <i class="icon-file"></i>
+                                bootstrap.php
+                                <small style="float: right;padding-right: 10px;">2</small>
+                            </h3>
+                            <div>
+                                <table class="table markers table-bordered">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td>TODO</td>
+                                            <td>459</td>
+                                            <td>Make Zend, PEAR etc play with this</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td>TODO</td>
+                                            <td>459</td>
+                                            <td>Make our classes conform to a more straight forward CS.</td>
+                                        </tr>
+                                                                    </table>
+                            </div>
+                        </div>
+                                                                                                                    <div class="package-contents">
+                            <a name="rcube.php" id="rcube.php"></a>
+                            <h3>
+                            <i class="icon-file"></i>
+                                rcube.php
+                                <small style="float: right;padding-right: 10px;">1</small>
+                            </h3>
+                            <div>
+                                <table class="table markers table-bordered">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td>TODO</td>
+                                            <td>1441</td>
+                                            <td>Send error via HTTP</td>
+                                        </tr>
+                                                                    </table>
+                            </div>
+                        </div>
+                                                                                                                                                                                                                                                                                                        <div class="package-contents">
+                            <a name="rcube_config.php" id="rcube_config.php"></a>
+                            <h3>
+                            <i class="icon-file"></i>
+                                rcube_config.php
+                                <small style="float: right;padding-right: 10px;">1</small>
+                            </h3>
+                            <div>
+                                <table class="table markers table-bordered">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td>TODO</td>
+                                            <td>199</td>
+                                            <td>Remove global $CONFIG</td>
+                                        </tr>
+                                                                    </table>
+                            </div>
+                        </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div class="package-contents">
+                            <a name="rcube_imap.php" id="rcube_imap.php"></a>
+                            <h3>
+                            <i class="icon-file"></i>
+                                rcube_imap.php
+                                <small style="float: right;padding-right: 10px;">3</small>
+                            </h3>
+                            <div>
+                                <table class="table markers table-bordered">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td>TODO</td>
+                                            <td>1328</td>
+                                            <td>handle changed sorting</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td>TODO</td>
+                                            <td>2162</td>
+                                            <td>this should be rewrited to support RFC2231 4.1 combinations</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td>TODO</td>
+                                            <td>1513</td>
+                                            <td>: Search criteria should be provided in non-IMAP format, eg. array</td>
+                                        </tr>
+                                                                    </table>
+                            </div>
+                        </div>
+                                                                                                                    <div class="package-contents">
+                            <a name="rcube_imap_generic.php" id="rcube_imap_generic.php"></a>
+                            <h3>
+                            <i class="icon-file"></i>
+                                rcube_imap_generic.php
+                                <small style="float: right;padding-right: 10px;">1</small>
+                            </h3>
+                            <div>
+                                <table class="table markers table-bordered">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td>TODO</td>
+                                            <td>3861</td>
+                                            <td>lists</td>
+                                        </tr>
+                                                                    </table>
+                            </div>
+                        </div>
+                                                                                <div class="package-contents">
+                            <a name="rcube_imap_search.php" id="rcube_imap_search.php"></a>
+                            <h3>
+                            <i class="icon-file"></i>
+                                rcube_imap_search.php
+                                <small style="float: right;padding-right: 10px;">1</small>
+                            </h3>
+                            <div>
+                                <table class="table markers table-bordered">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td>TODO</td>
+                                            <td>78</td>
+                                            <td>try to estimate the required time based on folder size and previous search performance</td>
+                                        </tr>
+                                                                    </table>
+                            </div>
+                        </div>
+                                                                                <div class="package-contents">
+                            <a name="rcube_ldap.php" id="rcube_ldap.php"></a>
+                            <h3>
+                            <i class="icon-file"></i>
+                                rcube_ldap.php
+                                <small style="float: right;padding-right: 10px;">2</small>
+                            </h3>
+                            <div>
+                                <table class="table markers table-bordered">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td>TODO</td>
+                                            <td>1029</td>
+                                            <td>generate message saying which fields are missing</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td>TODO</td>
+                                            <td>1065</td>
+                                            <td>generate message saying which fields are missing</td>
+                                        </tr>
+                                                                    </table>
+                            </div>
+                        </div>
+                                                                                                                    <div class="package-contents">
+                            <a name="rcube_message.php" id="rcube_message.php"></a>
+                            <h3>
+                            <i class="icon-file"></i>
+                                rcube_message.php
+                                <small style="float: right;padding-right: 10px;">1</small>
+                            </h3>
+                            <div>
+                                <table class="table markers table-bordered">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td>FIXME</td>
+                                            <td>903</td>
+                                            <td>line length is max.65?</td>
+                                        </tr>
+                                                                    </table>
+                            </div>
+                        </div>
+                                                                                                                                                                                                                                                                    <div class="package-contents">
+                            <a name="rcube_plugin_api.php" id="rcube_plugin_api.php"></a>
+                            <h3>
+                            <i class="icon-file"></i>
+                                rcube_plugin_api.php
+                                <small style="float: right;padding-right: 10px;">1</small>
+                            </h3>
+                            <div>
+                                <table class="table markers table-bordered">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td>TODO</td>
+                                            <td>400</td>
+                                            <td>avoid recursion by checking in_array($hook, $this-&gt;exec_stack) ?</td>
+                                        </tr>
+                                                                    </table>
+                            </div>
+                        </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <div class="package-contents">
+                            <a name="rcube_storage.php" id="rcube_storage.php"></a>
+                            <h3>
+                            <i class="icon-file"></i>
+                                rcube_storage.php
+                                <small style="float: right;padding-right: 10px;">1</small>
+                            </h3>
+                            <div>
+                                <table class="table markers table-bordered">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td>TODO</td>
+                                            <td>411</td>
+                                            <td>: Search criteria should be provided in non-IMAP format, eg. array</td>
+                                        </tr>
+                                                                    </table>
+                            </div>
+                        </div>
+                                                                                                                                                                                                                                                                    <div class="package-contents">
+                            <a name="rcube_vcard.php" id="rcube_vcard.php"></a>
+                            <h3>
+                            <i class="icon-file"></i>
+                                rcube_vcard.php
+                                <small style="float: right;padding-right: 10px;">1</small>
+                            </h3>
+                            <div>
+                                <table class="table markers table-bordered">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td>TODO</td>
+                                            <td>343</td>
+                                            <td>fetch file from URL and save it locally?</td>
+                                        </tr>
+                                                                    </table>
+                            </div>
+                        </div>
+                                                                                    </div>
+        </div>
+    </div>
+    </div>
+
+        <footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
+            <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
+            generated on Sun, 08 Feb 2015 14:49:23 +0100.<br/>
+    </footer>
+    </body>
+</html>

@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>    Roundcube Framework &raquo; \rcube_user
+</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+            <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+            <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+        <![endif]-->
+        <script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script>
+        <script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script>
+        <script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script>
+        <script src="../js/bootstrap.js" type="text/javascript"></script>
+        <script src="../js/template.js" type="text/javascript"></script>
+        <script src="../js/prettify/prettify.min.js" type="text/javascript"></script>
+    
+            <link rel="shortcut icon" href="../img/favicon.ico"/>
+        <link rel="apple-touch-icon" href="../img/apple-touch-icon.png"/>
+        <link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png"/>
+        <link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png"/>
+    </head>
+<body>
+
+        <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span> <span class="icon-bar"></span>
+                    <span class="icon-bar"></span> </a>
+                <a class="brand" href="../index.html">Roundcube Framework</a>
+
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li class="dropdown">
+                            <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                API Documentation <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                                                                            </ul>
+                        </li>
+                        <li class="dropdown" id="charts-menu">
+                            <a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                Charts <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../graph_class.html">
+                                        <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown" id="reports-menu">
+                            <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                Reports <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../errors.html">
+                                        <i class="icon-list-alt"></i>&#160;Errors
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../markers.html">
+                                        <i class="icon-list-alt"></i>&#160;Markers
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../deprecated.html">
+                                        <i class="icon-list-alt"></i>&#160;Deprecated
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="go_to_top">
+            <a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>
+        </div>
+    </div>
+    
+    <div id="___" class="container">
+        <noscript>
+            <div class="alert alert-warning">
+                Javascript is disabled; several features are only available if Javascript is enabled.
+            </div>
+        </noscript>
+
+        
+            <style>
+        .deprecated h2 {
+            text-decoration: line-through;
+        }
+    </style>
+    <div class="row">
+        <div class="span4">
+                    <div class="btn-group view pull-right" data-toggle="buttons-radio">
+        <button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button>
+        <button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+    </div>
+    <div class="btn-group visibility" data-toggle="buttons-checkbox">
+        <button class="btn public active" title="Show public elements">Public</button>
+        <button class="btn protected" title="Show protected elements">Protected</button>
+        <button class="btn private" title="Show private elements">Private</button>
+        <button class="btn inherited active" title="Show inherited elements">Inherited</button>
+    </div>
+
+        <ul class="side-nav nav nav-list">
+        <li class="nav-header">
+            <i class="icon-custom icon-method"></i> Methods
+            <ul>
+                                                                                                    <li class="method public">
+        <a href="#method___construct" title="__construct :: Object constructor">
+            <span class="description">Object constructor</span><pre>__construct</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_get_username" title="get_username :: Build a user name string (as e-mail address)">
+            <span class="description">Build a user name string (as e-mail address)</span><pre>get_username</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_get_prefs" title="get_prefs :: Get the preferences saved for this user">
+            <span class="description">Get the preferences saved for this user</span><pre>get_prefs</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_save_prefs" title="save_prefs :: Write the given user prefs to the user&#039;s record">
+            <span class="description">Write the given user prefs to the user&#039;s record</span><pre>save_prefs</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_get_hash" title="get_hash :: Generate a unique hash to identify this user which">
+            <span class="description">Generate a unique hash to identify this user which</span><pre>get_hash</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_list_emails" title="list_emails :: Return a list of all user emails (from identities)">
+            <span class="description">Return a list of all user emails (from identities)</span><pre>list_emails</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_get_identity" title="get_identity :: Get default identity of this user">
+            <span class="description">Get default identity of this user</span><pre>get_identity</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_list_identities" title="list_identities :: Return a list of all identities linked with this user">
+            <span class="description">Return a list of all identities linked with this user</span><pre>list_identities</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_update_identity" title="update_identity :: Update a specific identity record">
+            <span class="description">Update a specific identity record</span><pre>update_identity</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_insert_identity" title="insert_identity :: Create a new identity record linked with this user">
+            <span class="description">Create a new identity record linked with this user</span><pre>insert_identity</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_delete_identity" title="delete_identity :: Mark the given identity as deleted">
+            <span class="description">Mark the given identity as deleted</span><pre>delete_identity</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_set_default" title="set_default :: Make this identity the default one for this user">
+            <span class="description">Make this identity the default one for this user</span><pre>set_default</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_touch" title="touch :: Update user&#039;s last_login timestamp">
+            <span class="description">Update user&#039;s last_login timestamp</span><pre>touch</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_reset" title="reset :: Clear the saved object state">
+            <span class="description">Clear the saved object state</span><pre>reset</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_query" title="query :: Find a user record matching the given name and host">
+            <span class="description">Find a user record matching the given name and host</span><pre>query</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_create" title="create :: Create a new user record and return a rcube_user instance">
+            <span class="description">Create a new user record and return a rcube_user instance</span><pre>create</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_email2user" title="email2user :: Resolve username using a virtuser plugins">
+            <span class="description">Resolve username using a virtuser plugins</span><pre>email2user</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_user2email" title="user2email :: Resolve e-mail address from virtuser plugins">
+            <span class="description">Resolve e-mail address from virtuser plugins</span><pre>user2email</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_list_searches" title="list_searches :: Return a list of saved searches linked with this user">
+            <span class="description">Return a list of saved searches linked with this user</span><pre>list_searches</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_get_search" title="get_search :: Return saved search data.">
+            <span class="description">Return saved search data.</span><pre>get_search</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_delete_search" title="delete_search :: Deletes given saved search record">
+            <span class="description">Deletes given saved search record</span><pre>delete_search</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_insert_search" title="insert_search :: Create a new saved search record linked with this user">
+            <span class="description">Create a new saved search record linked with this user</span><pre>insert_search</pre>
+        </a>
+    </li>
+
+                                                </ul>
+        </li>
+        <li class="nav-header protected">» Protected
+            <ul>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </ul>
+        </li>
+        <li class="nav-header private">» Private
+            <ul>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </ul>
+        </li>
+        <li class="nav-header">
+            <i class="icon-custom icon-constant"></i> Constants
+            <ul>
+                                <li class="constant ">
+                    <a href="#constant_SEARCH_ADDRESSBOOK" title="SEARCH_ADDRESSBOOK :: ">
+                        <span class="description"></span><pre>SEARCH_ADDRESSBOOK</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_SEARCH_MAIL" title="SEARCH_MAIL :: ">
+                        <span class="description"></span><pre>SEARCH_MAIL</pre>
+                    </a>
+                </li>
+                            </ul>
+        </li>
+    </ul>
+
+
+        </div>
+
+        <div class="span8">
+            <div class="element class">
+                <h1>rcube_user</h1>
+                <small style="display: block; text-align: right">
+                                                        </small>
+                <p class="short_description">Class representing a system user</p>
+                <div class="details">
+                    <div class="long_description">
+                        
+                    </div>
+                    <table class="table table-bordered">
+                                                                                    <tr>
+                                    <th>
+                                        package
+                                                                            </th>
+                                    <td>
+                                                                                    
+                                                                                <p>Framework</p>
+                                    </td>
+                                </tr>
+                                                                                                                <tr>
+                                    <th>
+                                        subpackage
+                                                                            </th>
+                                    <td>
+                                                                                    
+                                                                                <p>Core</p>
+                                    </td>
+                                </tr>
+                                                                                                                                                                                </table>
+
+                    <h3><i class="icon-custom icon-method"></i> Methods</h3>
+                                                                <a id="method___construct"></a>
+                        <div class="element clickable method public  method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
+                            <h2>Object constructor</h2>
+                            <pre>__construct(int $id = null, array $sql_arr = null) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$id</h4>
+                                                <code>int</code><p><p>User id</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$sql_arr</h4>
+                                                <code>array</code><p><p>SQL result set</p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_get_username"></a>
+                        <div class="element clickable method public  method_get_username" data-toggle="collapse" data-target=".method_get_username .collapse">
+                            <h2>Build a user name string (as e-mail address)</h2>
+                            <pre>get_username(string $part = null) : string</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$part</h4>
+                                                <code>string</code><p><p>Username part (empty or 'local' or 'domain', 'mail')</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>string</code><p><p>Full user name or its part</p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_get_prefs"></a>
+                        <div class="element clickable method public  method_get_prefs" data-toggle="collapse" data-target=".method_get_prefs .collapse">
+                            <h2>Get the preferences saved for this user</h2>
+                            <pre>get_prefs() : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p><p>Hash array with prefs</p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_save_prefs"></a>
+                        <div class="element clickable method public  method_save_prefs" data-toggle="collapse" data-target=".method_save_prefs .collapse">
+                            <h2>Write the given user prefs to the user&#039;s record</h2>
+                            <pre>save_prefs(array $a_user_prefs) : boolean</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$a_user_prefs</h4>
+                                                <code>array</code><p><p>User prefs to save</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p><p>True on success, False on failure</p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_get_hash"></a>
+                        <div class="element clickable method public  method_get_hash" data-toggle="collapse" data-target=".method_get_hash .collapse">
+                            <h2>Generate a unique hash to identify this user which</h2>
+                            <pre>get_hash() </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_list_emails"></a>
+                        <div class="element clickable method public  method_list_emails" data-toggle="collapse" data-target=".method_list_emails .collapse">
+                            <h2>Return a list of all user emails (from identities)</h2>
+                            <pre>list_emails($default = false) : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$default</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p><p>List of emails (identity_id, name, email)</p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_get_identity"></a>
+                        <div class="element clickable method public  method_get_identity" data-toggle="collapse" data-target=".method_get_identity .collapse">
+                            <h2>Get default identity of this user</h2>
+                            <pre>get_identity(int $id = null) : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$id</h4>
+                                                <code>int</code><p><p>Identity ID. If empty, the default identity is returned</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p><p>Hash array with all cols of the identity record</p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_list_identities"></a>
+                        <div class="element clickable method public  method_list_identities" data-toggle="collapse" data-target=".method_list_identities .collapse">
+                            <h2>Return a list of all identities linked with this user</h2>
+                            <pre>list_identities(string $sql_add = &#039;&#039;, bool $formatted = false) : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$sql_add</h4>
+                                                <code>string</code><p><p>Optional WHERE clauses</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$formatted</h4>
+                                                <code>bool</code><p><p>Format identity email and name</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p><p>List of identities</p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_update_identity"></a>
+                        <div class="element clickable method public  method_update_identity" data-toggle="collapse" data-target=".method_update_identity .collapse">
+                            <h2>Update a specific identity record</h2>
+                            <pre>update_identity(int $iid, array $data) : boolean</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$iid</h4>
+                                                <code>int</code><p><p>Identity ID</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$data</h4>
+                                                <code>array</code><p><p>Hash array with col->value pairs to save</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p><p>True if saved successfully, false if nothing changed</p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_insert_identity"></a>
+                        <div class="element clickable method public  method_insert_identity" data-toggle="collapse" data-target=".method_insert_identity .collapse">
+                            <h2>Create a new identity record linked with this user</h2>
+                            <pre>insert_identity(array $data) : int</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$data</h4>
+                                                <code>array</code><p><p>Hash array with col->value pairs to save</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>int</code><p><p>The inserted identity ID or false on error</p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_delete_identity"></a>
+                        <div class="element clickable method public  method_delete_identity" data-toggle="collapse" data-target=".method_delete_identity .collapse">
+                            <h2>Mark the given identity as deleted</h2>
+                            <pre>delete_identity(int $iid) : boolean</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$iid</h4>
+                                                <code>int</code><p><p>Identity ID</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p><p>True if deleted successfully, false if nothing changed</p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_set_default"></a>
+                        <div class="element clickable method public  method_set_default" data-toggle="collapse" data-target=".method_set_default .collapse">
+                            <h2>Make this identity the default one for this user</h2>
+                            <pre>set_default(int $iid) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$iid</h4>
+                                                <code>int</code><p><p>The identity ID</p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_touch"></a>
+                        <div class="element clickable method public  method_touch" data-toggle="collapse" data-target=".method_touch .collapse">
+                            <h2>Update user&#039;s last_login timestamp</h2>
+                            <pre>touch() </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_reset"></a>
+                        <div class="element clickable method public  method_reset" data-toggle="collapse" data-target=".method_reset .collapse">
+                            <h2>Clear the saved object state</h2>
+                            <pre>reset() </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_query"></a>
+                        <div class="element clickable method public  method_query" data-toggle="collapse" data-target=".method_query .collapse">
+                            <h2>Find a user record matching the given name and host</h2>
+                            <pre>query(string $user, string $host) : \rcube_user</pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$user</h4>
+                                                <code>string</code><p><p>IMAP user name</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$host</h4>
+                                                <code>string</code><p><p>IMAP host name</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code><a href="../classes/rcube_user.html">\rcube_user</a></code><p><p>New user instance</p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_create"></a>
+                        <div class="element clickable method public  method_create" data-toggle="collapse" data-target=".method_create .collapse">
+                            <h2>Create a new user record and return a rcube_user instance</h2>
+                            <pre>create(string $user, string $host) : \rcube_user</pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$user</h4>
+                                                <code>string</code><p><p>IMAP user name</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$host</h4>
+                                                <code>string</code><p><p>IMAP host</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code><a href="../classes/rcube_user.html">\rcube_user</a></code><p><p>New user instance</p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_email2user"></a>
+                        <div class="element clickable method public  method_email2user" data-toggle="collapse" data-target=".method_email2user .collapse">
+                            <h2>Resolve username using a virtuser plugins</h2>
+                            <pre>email2user(string $email) : string</pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$email</h4>
+                                                <code>string</code><p><p>E-mail address to resolve</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>string</code><p><p>Resolved IMAP username</p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_user2email"></a>
+                        <div class="element clickable method public  method_user2email" data-toggle="collapse" data-target=".method_user2email .collapse">
+                            <h2>Resolve e-mail address from virtuser plugins</h2>
+                            <pre>user2email(string $user, boolean $first = true, boolean $extended = false) : mixed</pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$user</h4>
+                                                <code>string</code><p><p>User name</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$first</h4>
+                                                <code>boolean</code><p><p>If true returns first found entry</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$extended</h4>
+                                                <code>boolean</code><p><p>If true returns email as array (email and name for identity)</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>mixed</code><p><p>Resolved e-mail address string or array of strings</p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_list_searches"></a>
+                        <div class="element clickable method public  method_list_searches" data-toggle="collapse" data-target=".method_list_searches .collapse">
+                            <h2>Return a list of saved searches linked with this user</h2>
+                            <pre>list_searches(int $type) : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$type</h4>
+                                                <code>int</code><p><p>Search type</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p><p>List of saved searches indexed by search ID</p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_get_search"></a>
+                        <div class="element clickable method public  method_get_search" data-toggle="collapse" data-target=".method_get_search .collapse">
+                            <h2>Return saved search data.</h2>
+                            <pre>get_search(int $id) : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$id</h4>
+                                                <code>int</code><p><p>Row identifier</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p><p>Data</p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_delete_search"></a>
+                        <div class="element clickable method public  method_delete_search" data-toggle="collapse" data-target=".method_delete_search .collapse">
+                            <h2>Deletes given saved search record</h2>
+                            <pre>delete_search(int $sid) : boolean</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$sid</h4>
+                                                <code>int</code><p><p>Search ID</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p><p>True if deleted successfully, false if nothing changed</p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_insert_search"></a>
+                        <div class="element clickable method public  method_insert_search" data-toggle="collapse" data-target=".method_insert_search .collapse">
+                            <h2>Create a new saved search record linked with this user</h2>
+                            <pre>insert_search(array $data) : int</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$data</h4>
+                                                <code>array</code><p><p>Hash array with col->value pairs to save</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>int</code><p><p>The inserted search ID or false on error</p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                    
+                                            <h3><i class="icon-custom icon-constant"></i> Constants</h3>
+                                                    <a id="constant_SEARCH_ADDRESSBOOK"> </a>
+                            <div class="element clickable constant  constant_SEARCH_ADDRESSBOOK" data-toggle="collapse" data-target=".constant_SEARCH_ADDRESSBOOK .collapse">
+                                <h2>SEARCH_ADDRESSBOOK</h2>
+                                <pre>SEARCH_ADDRESSBOOK</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_SEARCH_MAIL"> </a>
+                            <div class="element clickable constant  constant_SEARCH_MAIL" data-toggle="collapse" data-target=".constant_SEARCH_MAIL .collapse">
+                                <h2>SEARCH_MAIL</h2>
+                                <pre>SEARCH_MAIL</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                            
+                                                                <h3><i class="icon-custom icon-property"></i> Properties</h3>
+                                                    <a id="property_ID"> </a>
+                            <div class="element clickable property  public property_ID" data-toggle="collapse" data-target=".property_ID .collapse">
+                                <h2>ID</h2>
+                                <pre>ID : </pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_data"> </a>
+                            <div class="element clickable property  public property_data" data-toggle="collapse" data-target=".property_data .collapse">
+                                <h2>data</h2>
+                                <pre>data : </pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_language"> </a>
+                            <div class="element clickable property  public property_language" data-toggle="collapse" data-target=".property_language .collapse">
+                                <h2>language</h2>
+                                <pre>language : </pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_db"> </a>
+                            <div class="element clickable property  private property_db" data-toggle="collapse" data-target=".property_db .collapse">
+                                <h2>Holds database connection.</h2>
+                                <pre>db : \rcube_db</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code><a href="../classes/rcube_db.html">\rcube_db</a></code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_rc"> </a>
+                            <div class="element clickable property  private property_rc" data-toggle="collapse" data-target=".property_rc .collapse">
+                                <h2>Framework object.</h2>
+                                <pre>rc : \rcube</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code><a href="../classes/rcube.html">\rcube</a></code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_identities"> </a>
+                            <div class="element clickable property  private property_identities" data-toggle="collapse" data-target=".property_identities .collapse">
+                                <h2>Internal identities cache</h2>
+                                <pre>identities : array</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>array</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_emails"> </a>
+                            <div class="element clickable property  private property_emails" data-toggle="collapse" data-target=".property_emails .collapse">
+                                <h2>Internal emails cache</h2>
+                                <pre>emails : array</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>array</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                            </div>
+            </div>
+            <a id="\rcube_user"></a>
+            <ul class="breadcrumb">
+                <li><a href="../index.html"><i class="icon-custom icon-class"></i></a></li>
+                    
+    
+    <li><span class="divider">\</span><a href="../namespaces/default.html">\</a></li>
+
+                <li class="active"><span class="divider">\</span><a href="../classes/rcube_user.html">rcube_user</a></li>
+            </ul>
+        </div>
+    </div>
+
+    </div>
+
+        <footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
+            <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
+            generated on Sun, 08 Feb 2015 14:49:23 +0100.<br/>
+    </footer>
+    </body>
+</html>
