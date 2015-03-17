@@ -59,16 +59,6 @@ class RoundcubeHelper {
     $imap = $this->rcube->get_storage();
 
     // do cool stuff here...
-
-    /*
-    $host = 'rs9.websitehostserver.net';
-    $user = 'info@rodrigosantellan.com';
-    $pass = 'S8zxwOTD4kq3';
-    // Change to non ssl connection because of problems with perl Mail_mime
-    $hostSend = 'mail.rodrigosantellan.com';
-    $portSend = '26';
-    $messageTo = 'rswibmer@hotmail.com';
-    */
     $imap->connect($this->hostImap, $this->userImap, $this->passImap);
 
     //$retrieved = ReceiveHelper::readMessages($this->rcube);
