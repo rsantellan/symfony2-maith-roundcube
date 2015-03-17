@@ -87,7 +87,7 @@ class rcube_string_replacer
     {
         $i = -1;
         $scheme = strtolower($matches[1]);
-
+        $prefix = '';
         if (preg_match('!^(http|ftp|file)s?://!i', $scheme)) {
             $url = $matches[1] . $matches[2];
         }
@@ -100,7 +100,15 @@ class rcube_string_replacer
         if ($url) {
             $suffix = $this->parse_url_brackets($url);
             $attrib = (array)$this->options['link_attribs'];
-            $attrib['href'] = $url_prefix . $url;
+            if(isset($url_prefix))
+            {
+              $attrib['href'] = $url_prefix . $url;
+            }
+            else
+            {
+              $attrib['href'] = $url;
+            }
+            
 
             $i = $this->add(html::a($attrib, rcube::Q($url)) . $suffix);
             $this->urls[$i] = $attrib['href'];
@@ -128,11 +136,15 @@ class rcube_string_replacer
     public function linkref_callback($matches)
     {
         $i = 0;
-        if ($url = $this->linkrefs[$matches[1]]) {
+        if(isset($this->linkrefs[$matches[1]]))
+        {
+          if ($url = $this->linkrefs[$matches[1]]) {
             $attrib = (array)$this->options['link_attribs'];
             $attrib['href'] = $url;
             $i = $this->add(html::a($attrib, rcube::Q($matches[1])));
+          }
         }
+        
 
         return $i > 0 ? '['.$this->get_replacement($i).']' : $matches[0];
     }
@@ -203,7 +215,7 @@ class rcube_string_replacer
         // of the link e.g. "[http://example.com]"
         // Yes, this is not perfect handles correctly only paired characters
         // but it should work for common cases
-
+        $suffix = '';
         if (preg_match('/(\\[|\\])/', $url)) {
             $in = false;
             for ($i=0, $len=strlen($url); $i<$len; $i++) {

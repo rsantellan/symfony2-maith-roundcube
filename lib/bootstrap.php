@@ -475,6 +475,14 @@ function rcube_autoload($classname)
         ),
         $classname
     );
+    if($classname == 'html')
+    {
+      $filename = 'Roundcube/html';
+    }
+    if($classname == 'rcmail_string_replacer')
+    {
+      $filename = 'Roundcube/rcmail_string_replacer';
+    }
     if ($fp = @fopen("$filename.php", 'r', true)) {
         fclose($fp);
         include_once "$filename.php";

@@ -188,11 +188,9 @@ class rcube_imap_cache
                 return $result;
             }
         }
-
         // Get index from DB (if DB wasn't already queried)
         if (empty($index) && empty($this->icache[$mailbox]['index_queried'])) {
             $index = $this->get_index_row($mailbox);
-
             // set the flag that DB was already queried for index
             // this way we'll be able to skip one SELECT, when
             // get_index() is called more than once
@@ -241,22 +239,30 @@ class rcube_imap_cache
             // Got it in internal cache, so the row already exist
             $exists = array_key_exists('index', $this->icache[$mailbox]);
         }
-
+        $auxModSeq = null;
+        if(isset($index) && !empty($index['modseq'])){
+          $auxModSeq = $index['modseq'];
+        }
+        else{
+          
+        }
         // Index not found, not valid or sort field changed, get index from IMAP server
         if ($data === null) {
             // Get mailbox data (UIDVALIDITY, counters, etc.) for status check
             $mbox_data = $this->imap->folder_data($mailbox);
             $data      = $this->get_index_data($mailbox, $sort_field, $sort_order, $mbox_data);
-
+            if($auxModSeq == NULL && isset($mbox_data['HIGHESTMODSEQ'])){
+              $auxModSeq = $mbox_data['HIGHESTMODSEQ'];
+            }
             // insert/update
-            $this->add_index_row($mailbox, $sort_field, $data, $mbox_data, $exists, $index['modseq']);
+            $this->add_index_row($mailbox, $sort_field, $data, $mbox_data, $exists, $auxModSeq);
         }
 
         $this->icache[$mailbox]['index'] = array(
             'validated'  => true,
             'object'     => $data,
             'sort_field' => $sort_field,
-            'modseq'     => !empty($index['modseq']) ? $index['modseq'] : $mbox_data['HIGHESTMODSEQ']
+            'modseq'     => $auxModSeq
         );
 
         return $data;
@@ -396,7 +402,7 @@ class rcube_imap_cache
     function get_message($mailbox, $uid, $update = true, $cache = true)
     {
         // Check internal cache
-        if ($this->icache['__message']
+        if (isset($this->icache['__message']) 
             && $this->icache['__message']['mailbox'] == $mailbox
             && $this->icache['__message']['object']->uid == $uid
         ) {
@@ -724,7 +730,7 @@ class rcube_imap_cache
             ." WHERE `user_id` = ?"
                 ." AND `mailbox` = ?",
             $this->userid, $mailbox);
-
+        $aux = $this->db->fetch_assoc($sql_result);
         if ($sql_arr = $this->db->fetch_assoc($sql_result)) {
             $data  = explode('@', $sql_arr['data']);
             $index = $this->db->decode($data[0], true);
@@ -733,7 +739,6 @@ class rcube_imap_cache
             if (empty($index)) {
                 $index = new rcube_result_index($mailbox);
             }
-
             return array(
                 'valid'      => $sql_arr['valid'],
                 'object'     => $index,
@@ -789,13 +794,19 @@ class rcube_imap_cache
     private function add_index_row($mailbox, $sort_field,
         $data, $mbox_data = array(), $exists = false, $modseq = null)
     {
+        $auxModSeq = null;
+        if($modseq !== null){
+          if(isset($mbox_data['HIGHESTMODSEQ'])){
+            $auxModSeq = $mbox_data['HIGHESTMODSEQ'];
+          }
+        }
         $data = array(
             $this->db->encode($data, true),
             $sort_field,
             (int) $this->skip_deleted,
             (int) $mbox_data['UIDVALIDITY'],
             (int) $mbox_data['UIDNEXT'],
-            $modseq ? $modseq : $mbox_data['HIGHESTMODSEQ'],
+            $auxModSeq,
         );
 
         $data    = implode('@', $data);
@@ -1033,7 +1044,6 @@ class rcube_imap_cache
         if (!$qresync && !$condstore) {
             return;
         }
-
         // Get stored index
         $index = $this->get_index_row($mailbox);
 
@@ -1221,7 +1231,9 @@ class rcube_imap_cache
     private function save_icache()
     {
         // Save current message from internal cache
-        if ($message = $this->icache['__message']) {
+        if(isset($this->icache['__message']))
+        {
+          if ($message = $this->icache['__message']) {
             // clean up some object's data
             $this->message_object_prepare($message['object']);
 
@@ -1233,7 +1245,9 @@ class rcube_imap_cache
             }
 
             $this->icache['__message']['md5sum'] = $md5sum;
+          }
         }
+        
     }
 
 
@@ -1248,7 +1262,7 @@ class rcube_imap_cache
         if (isset($msg->body)) {
             $length = strlen($msg->body);
 
-            if ($msg->body_modified || $size + $length > $this->threshold * 1024) {
+            if (isset($msg->body_modified) || $size + $length > $this->threshold * 1024) {
                 unset($msg->body);
             }
             else {
@@ -1259,17 +1273,17 @@ class rcube_imap_cache
         // Fix mimetype which might be broken by some code when message is displayed
         // Another solution would be to use object's copy in rcube_message class
         // to prevent related issues, however I'm not sure which is better
-        if ($msg->mimetype) {
+        if (isset($msg->mimetype)) {
             list($msg->ctype_primary, $msg->ctype_secondary) = explode('/', $msg->mimetype);
         }
 
         unset($msg->replaces);
 
-        if (is_object($msg->structure)) {
+        if (isset($msg->structure) && is_object($msg->structure)) {
             $this->message_object_prepare($msg->structure, $size);
         }
 
-        if (is_array($msg->parts)) {
+        if (isset($msg->parts) && is_array($msg->parts)) {
             foreach ($msg->parts as $part) {
                 $this->message_object_prepare($part, $size);
             }

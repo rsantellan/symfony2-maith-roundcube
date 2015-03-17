@@ -163,12 +163,12 @@ class rcube_text2html
         // wrap quoted lines with <blockquote>
         for ($n = 0, $cnt = count($text); $n < $cnt; $n++) {
             $flowed = false;
-            if ($this->config['flowed'] && ord($text[$n][0]) == $flowed_char) {
+            if ($this->config['flowed'] && isset($text[$n][0]) && ord($text[$n][0]) == $flowed_char) {
                 $flowed   = true;
                 $text[$n] = substr($text[$n], 1);
             }
 
-            if ($text[$n][0] == '>' && preg_match('/^(>+ {0,1})+/', $text[$n], $regs)) {
+            if (isset($text[$n][0]) && $text[$n][0] == '>' && preg_match('/^(>+ {0,1})+/', $text[$n], $regs)) {
                 $q        = substr_count($regs[0], '>');
                 $text[$n] = substr($text[$n], strlen($regs[0]));
                 $text[$n] = $this->_convert_line($text[$n], $flowed || $this->config['wrap']);
@@ -235,7 +235,7 @@ class rcube_text2html
         $len           = strlen($text);
         $sig_sep       = "--" . $this->config['space'] . "\n";
         $sig_max_lines = rcube::get_instance()->config->get('sig_max_lines', 15);
-
+        $sp = false;
         while (($sp = strrpos($text, $sig_sep, $sp ? -$len+$sp-1 : 0)) !== false) {
             if ($sp == 0 || $text[$sp-1] == "\n") {
                 // do not touch blocks with more that X lines

@@ -122,6 +122,7 @@ class rcube_imap extends rcube_storage
      */
     public function connect($host, $user, $pass, $port=143, $use_ssl=null)
     {
+        $this->options['debug'] = true;
         // check for OpenSSL support in PHP build
         if ($use_ssl && extension_loaded('openssl')) {
             $this->options['ssl_mode'] = $use_ssl == 'imaps' ? 'ssl' : $use_ssl;
@@ -134,7 +135,7 @@ class rcube_imap extends rcube_storage
         }
 
         $this->options['port'] = $port;
-
+        
         if ($this->options['debug']) {
             $this->set_debug(true);
 
@@ -1984,9 +1985,8 @@ class rcube_imap extends rcube_storage
             // pre-fetch headers of all parts (in one command for better performance)
             // @TODO: we could do this before _structure_part() call, to fetch
             // headers for parts on all levels
-            if ($mime_part_headers) {
-                $mime_part_headers = $this->conn->fetchMIMEHeaders($this->folder,
-                    $this->msg_uid, $mime_part_headers);
+            if (isset($mime_part_headers)) {
+                $mime_part_headers = $this->conn->fetchMIMEHeaders($this->folder, $this->msg_uid, $mime_part_headers);
             }
 
             $struct->parts = array();
@@ -1995,8 +1995,12 @@ class rcube_imap extends rcube_storage
                     break;
                 }
                 $tmp_part_id = $struct->mime_id ? $struct->mime_id.'.'.($i+1) : $i+1;
-                $struct->parts[] = $this->structure_part($part[$i], ++$count, $struct->mime_id,
-                    $mime_part_headers[$tmp_part_id]);
+                $mime_part = null;
+                if(isset($mime_part_headers) && isset($mime_part_headers[$tmp_part_id]))
+                {
+                  $mime_part = $mime_part_headers[$tmp_part_id];
+                }
+                $struct->parts[] = $this->structure_part($part[$i], ++$count, $struct->mime_id, $mime_part);
             }
 
             return $struct;
@@ -2041,7 +2045,7 @@ class rcube_imap extends rcube_storage
         }
 
         // #1487700: workaround for lack of charset in malformed structure
-        if (empty($struct->charset) && !empty($mime_headers) && $mime_headers->charset) {
+        if (empty($struct->charset) && $mime_headers != null && isset($mime_headers->charset)) {
             $struct->charset = $mime_headers->charset;
         }
 
@@ -2097,7 +2101,7 @@ class rcube_imap extends rcube_storage
         }
 
         // fetch message headers if message/rfc822 or named part (could contain Content-Location header)
-        if ($struct->ctype_primary == 'message' || ($struct->ctype_parameters['name'] && !$struct->content_id)) {
+        if ($struct->ctype_primary == 'message' || (isset($struct->ctype_parameters['name']) && !isset($struct->content_id))) {
             if (empty($mime_headers)) {
                 $mime_headers = $this->conn->fetchPartHeader(
                     $this->folder, $this->msg_uid, true, $struct->mime_id);
@@ -2870,7 +2874,7 @@ class rcube_imap extends rcube_storage
             // unsubscribe non-existent folders, remove from the list
             if (is_array($a_folders) && $name == '*' && !empty($this->conn->data['LIST'])) {
                 foreach ($a_folders as $idx => $folder) {
-                    if (($opts = $this->conn->data['LIST'][$folder])
+                    if (!is_array($folder) && isset($this->conn->data['LIST'][$folder]) && ($opts = $this->conn->data['LIST'][$folder])
                         && in_array('\\NonExistent', $opts)
                     ) {
                         $this->conn->unsubscribe($folder);
@@ -4181,7 +4185,7 @@ class rcube_imap extends rcube_storage
 
         // convert names to UTF-8 and skip folders starting with '.'
         foreach ($a_folders as $folder) {
-            if ($folder[0] != '.') {
+            if (isset($folder[0]) && $folder[0] != '.') {
                 // for better performance skip encoding conversion
                 // if the string does not look like UTF7-IMAP
                 $folders[$folder] = strpos($folder, '&') === false ? $folder : rcube_charset::convert($folder, 'UTF7-IMAP');
@@ -4266,10 +4270,13 @@ class rcube_imap extends rcube_storage
         if (!strlen($folder)) {
             $folder = $this->folder;
         }
-
-        if ($uid = array_search($id, (array)$this->uid_id_map[$folder])) {
+        if(isset($this->uid_id_map[$folder]))
+        {
+          if ($uid = array_search($id, (array)$this->uid_id_map[$folder])) {
             return $uid;
+          }
         }
+        
 
         if (!$this->check_connection()) {
             return null;

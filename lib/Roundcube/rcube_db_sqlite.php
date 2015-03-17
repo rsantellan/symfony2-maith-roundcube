@@ -93,7 +93,7 @@ class rcube_db_sqlite extends rcube_db
      */
     public function now($interval = 0)
     {
-        if ($interval) {
+        if ((int)$interval >= 0) {
             $add = ($interval > 0 ? '+' : '') . intval($interval) . ' seconds';
         }
 

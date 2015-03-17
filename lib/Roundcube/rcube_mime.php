@@ -522,6 +522,7 @@ class rcube_mime
 
                     if (isset($text[$last]) && $line
                         && $text[$last] != '-- '
+                        && isset($text[$last][strlen($text[$last])-1])
                         && $text[$last][strlen($text[$last])-1] == ' '
                     ) {
                         $text[$last] .= $line;

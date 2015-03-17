@@ -461,7 +461,7 @@ $config['max_group_members'] = 0;
 $config['product_name'] = 'Roundcube Webmail';
 
 // Add this user-agent to message headers when sending
-$config['useragent'] = 'Roundcube Webmail/'.RCMAIL_VERSION;
+$config['useragent'] = 'Roundcube Webmail/';//.RCMAIL_VERSION;
 
 // try to load host-specific configuration
 // see http://trac.roundcube.net/wiki/Howto_Config for more details
@@ -1135,3 +1135,5 @@ $config['message_show_email'] = false;
 // 0 - Reply-All always
 // 1 - Reply-List if mailing list is detected
 $config['reply_all_mode'] = 0;
+
+return $config;

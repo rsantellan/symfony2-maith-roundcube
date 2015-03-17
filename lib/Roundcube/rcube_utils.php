@@ -537,7 +537,7 @@ class rcube_utils
     {
         $out = html_entity_decode(html_entity_decode($content));
         $out = preg_replace_callback('/\\\([0-9a-f]{4})/i',
-            array(self, 'xss_entity_decode_callback'), $out);
+            array('rcube_utils', 'xss_entity_decode_callback'), $out);
         $out = preg_replace('#/\*.*\*/#Ums', '', $out);
 
         return $out;

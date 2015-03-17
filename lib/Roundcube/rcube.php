@@ -616,7 +616,7 @@ class rcube
         if (empty($this->texts)) {
             $this->load_language();
         }
-
+        $text = '';
         // extract attributes
         if (is_string($attrib)) {
             $attrib = array('name' => $attrib);
@@ -625,33 +625,41 @@ class rcube
         $name = $attrib['name'] ? $attrib['name'] : '';
 
         // attrib contain text values: use them from now
-        if (($setval = $attrib[strtolower($_SESSION['language'])]) || ($setval = $attrib['en_us'])) {
+        $setval = null;
+        if(isset($attrib[strtolower($_SESSION['language'])])){
+          $setval = $attrib[strtolower($_SESSION['language'])];
+        }
+        if(isset($attrib['en_us'])){
+          $setval = $attrib['en_us'];
+        }
+        if ($setval != null) {
             $this->texts[$name] = $setval;
         }
 
         // check for text with domain
         if ($domain && ($text = $this->texts[$domain.'.'.$name])) {
+          
         }
         // text does not exist
-        else if (!($text = $this->texts[$name])) {
+        else if (isset($this->texts[$name]) && !($text = $this->texts[$name])) {
             return "[$name]";
         }
 
         // replace vars in text
-        if (is_array($attrib['vars'])) {
+        if (isset($attrib['vars']) && is_array($attrib['vars'])) {
             foreach ($attrib['vars'] as $var_key => $var_value) {
                 $text = str_replace($var_key[0]!='$' ? '$'.$var_key : $var_key, $var_value, $text);
             }
         }
 
         // format output
-        if (($attrib['uppercase'] && strtolower($attrib['uppercase'] == 'first')) || $attrib['ucfirst']) {
+        if (isset($attrib['uppercase']) && (($attrib['uppercase'] && strtolower($attrib['uppercase'] == 'first')) || $attrib['ucfirst'])) {
             return ucfirst($text);
         }
-        else if ($attrib['uppercase']) {
+        else if (isset($attrib['uppercase'])) {
             return mb_strtoupper($text);
         }
-        else if ($attrib['lowercase']) {
+        else if (isset($attrib['lowercase'])) {
             return mb_strtolower($text);
         }
 
@@ -721,9 +729,9 @@ class rcube
             @include(RCUBE_LOCALIZATION_DIR . 'en_US/labels.inc');
             @include(RCUBE_LOCALIZATION_DIR . 'en_US/messages.inc');
 
-            if (is_array($labels))
+            if (isset($labels) && is_array($labels))
                 $this->texts = $labels;
-            if (is_array($messages))
+            if (isset($messages) && is_array($messages))
                 $this->texts = array_merge($this->texts, $messages);
 
             // include user language files
@@ -1285,7 +1293,7 @@ class rcube
             $name = $log['name'];
             $line = $log['line'];
             $date = $log['date'];
-            if ($log['abort'])
+            if (isset($log['abort']))
                 return true;
         }
 

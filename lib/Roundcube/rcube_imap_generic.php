@@ -146,7 +146,7 @@ class rcube_imap_generic
         $res = 0;
         if ($parts = preg_split('/(\{[0-9]+\}\r\n)/m', $string, -1, PREG_SPLIT_DELIM_CAPTURE)) {
             for ($i=0, $cnt=count($parts); $i<$cnt; $i++) {
-                if (preg_match('/^\{([0-9]+)\}\r\n$/', $parts[$i+1], $matches)) {
+                if (isset($parts[$i+1]) && preg_match('/^\{([0-9]+)\}\r\n$/', $parts[$i+1], $matches) == 1) {
                     // LITERAL+ support
                     if ($this->prefs['literal+']) {
                         $parts[$i+1] = sprintf("{%d+}\r\n", $matches[1]);
@@ -692,7 +692,8 @@ class rcube_imap_generic
         list($code, $response) = $this->execute('NAMESPACE');
 
         if ($code == self::ERROR_OK && preg_match('/^\* NAMESPACE /', $response)) {
-            $data = $this->tokenizeResponse(substr($response, 11));
+            $response = substr($response, 11);
+            $data = $this->tokenizeResponse($response);
         }
 
         if (!is_array($data)) {
@@ -846,7 +847,7 @@ class rcube_imap_generic
         }
 
         // check for SSL
-        if ($this->prefs['ssl_mode'] && $this->prefs['ssl_mode'] != 'tls') {
+        if (isset($this->prefs['ssl_mode']) && $this->prefs['ssl_mode'] != 'tls') {
             $host = $this->prefs['ssl_mode'] . '://' . $host;
         }
 
@@ -904,7 +905,7 @@ class rcube_imap_generic
         }
 
         // TLS connection
-        if ($this->prefs['ssl_mode'] == 'tls' && $this->getCapability('STARTTLS')) {
+        if (isset($this->prefs['ssl_mode']) && $this->prefs['ssl_mode'] == 'tls' && $this->getCapability('STARTTLS')) {
             $res = $this->execute('STARTTLS');
 
             if ($res[0] != self::ERROR_OK) {
@@ -1414,7 +1415,7 @@ class rcube_imap_generic
                     }
 
                     // Add to result array
-                    if (!$lstatus) {
+                    if (isset($lstatus) && !$lstatus) {
                         $folders[] = $mailbox;
                     }
                     else {
@@ -1473,7 +1474,9 @@ class rcube_imap_generic
         }
 
         // Check internal cache
-        $cache = $this->data['STATUS:'.$mailbox];
+        $cache = array();
+        if(isset($this->data['STATUS:'.$mailbox]))
+          $cache = $this->data['STATUS:'.$mailbox];
         if (!empty($cache) && isset($cache['MESSAGES'])) {
             return (int) $cache['MESSAGES'];
         }
@@ -2234,7 +2237,7 @@ class rcube_imap_generic
                 }
 
                 // Tokenize response and assign to object properties
-                while (list($name, $value) = $this->tokenizeResponse($line, 2)) {
+                while (@list($name, $value) = $this->tokenizeResponse($line, 2)) {
                     if ($name == 'UID') {
                         $result[$id]->uid = intval($value);
                     }
@@ -2362,7 +2365,7 @@ class rcube_imap_generic
                             if (strlen($field) < 3) {
                                 break;
                             }
-                            if ($result[$id]->others[$field]) {
+                            if (isset($result[$id]->others[$field])) {
                                 $string = array_merge((array)$result[$id]->others[$field], (array)$string);
                             }
                             $result[$id]->others[$field] = $string;
@@ -2570,7 +2573,7 @@ class rcube_imap_generic
         }
 
         $binary    = true;
-
+        $initiated = false;
         do {
             if (!$initiated) {
                 switch ($encoding) {
@@ -3584,8 +3587,12 @@ class rcube_imap_generic
         while (!$num || count($result) < $num) {
             // remove spaces from the beginning of the string
             $str = ltrim($str);
-
-            switch ($str[0]) {
+            $aux = '';
+            if(isset($str[0]))
+            {
+              $aux = $str[0];
+            }
+            switch ($aux) {
 
             // String literal
             case '{':

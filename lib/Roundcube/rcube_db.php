@@ -122,9 +122,8 @@ class rcube_db
     {
         $this->db_error     = false;
         $this->db_error_msg = null;
-
         // return existing handle
-        if ($this->dbhs[$mode]) {
+        if (isset($this->dbhs[$mode])) {
             $this->dbh = $this->dbhs[$mode];
             $this->db_mode = $mode;
             return $this->dbh;
@@ -160,8 +159,16 @@ class rcube_db
             }
 
             $this->conn_prepare($dsn);
-
-            $dbh = new PDO($dsn_string, $dsn['username'], $dsn['password'], $dsn_options);
+            
+            $username = '';
+            if(isset($dsn['username'])){
+              $username = $dsn['username'];
+            }
+            if(isset($dsn['password'])){
+              $password = $dsn['password'];
+            }
+            $password = '';
+            $dbh = new PDO($dsn_string, $username, $password, $dsn_options);
 
             // don't throw exceptions or warnings
             $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT);
@@ -435,7 +442,7 @@ class rcube_db
 
         if (count($params)) {
             while ($pos = strpos($query, '?', $pos)) {
-                if ($query[$pos+1] == '?') {  // skip escaped '?'
+                if (isset($query[$pos+1]) && $query[$pos+1] == '?') {  // skip escaped '?'
                     $pos += 2;
                 }
                 else {
@@ -468,8 +475,8 @@ class rcube_db
 
         // send query
         $result = $this->dbh->query($query);
-
         if ($result === false) {
+          
             $result = $this->handle_error($query);
         }
 
@@ -649,6 +656,7 @@ class rcube_db
     protected function _fetch_row($result, $mode)
     {
         if ($result || ($result === null && ($result = $this->last_result))) {
+            
             if ($result !== true) {
                 return $result->fetch($mode);
             }

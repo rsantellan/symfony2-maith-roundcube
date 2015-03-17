@@ -224,18 +224,18 @@ class rcube_cache
      */
     function close()
     {
-        if (!$this->cache_changed) {
+        if (isset($this->cache_changed) && !$this->cache_changed) {
             return;
         }
 
         foreach ($this->cache as $key => $data) {
             // The key has been used
-            if ($this->cache_changes[$key]) {
+            if (isset($this->cache_changes[$key])) {
                 // Make sure we're not going to write unchanged data
                 // by comparing current md5 sum with the sum calculated on DB read
                 $data = $this->serialize($data);
 
-                if (!$this->cache_sums[$key] || $this->cache_sums[$key] != md5($data)) {
+                if (!isset($this->cache_sums[$key]) || $this->cache_sums[$key] != md5($data)) {
                     $this->write_record($key, $data);
                 }
             }

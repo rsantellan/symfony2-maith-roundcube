@@ -99,9 +99,9 @@ class rcube_message
         $this->mime = new rcube_mime($this->headers->charset);
 
         $this->subject = $this->headers->get('subject');
-        list(, $this->sender) = each($this->mime->decode_address_list($this->headers->from, 1));
+        list(, $this->sender) = @each($this->mime->decode_address_list($this->headers->from, 1));
 
-        $this->set_safe((intval($_GET['_safe']) || $_SESSION['safe_messages'][$this->folder.':'.$uid]));
+        $this->set_safe(true);
         $this->opt = array(
             'safe' => $this->is_safe,
             'prefer_html' => $this->app->config->get('prefer_html'),
@@ -117,8 +117,9 @@ class rcube_message
         }
         else {
             $this->body = $this->storage->get_body($uid);
+            var_dump($this->body);
         }
-
+        
         // notify plugins and let them analyze this structured message object
         $this->app->plugins->exec_hook('message_load', array('object' => $this));
     }
@@ -221,7 +222,18 @@ class rcube_message
         $formatted = $formatted && $part->ctype_primary == 'text';
 
         // part body not fetched yet... save in memory if it's small enough
-        if ($part->body === null && is_numeric($mime_id) && $part->size < self::BODY_MAX_SIZE) {
+        $fetchBody = false;
+        if(!isset($part->body) && is_numeric($mime_id) && $part->size < self::BODY_MAX_SIZE )
+        {
+          $fetchBody = true;
+        }
+        else 
+        {
+          if ($part->body === null && is_numeric($mime_id) && $part->size < self::BODY_MAX_SIZE) {
+            $fetchBody = true;
+          }
+        }
+        if ($fetchBody) {
             $this->storage->set_folder($this->folder);
             // Warning: body here should be always unformatted
             $part->body = $this->storage->get_message_part($this->uid, $mime_id, $part,
@@ -504,7 +516,7 @@ class rcube_message
 
         // show message headers
         if ($recursive && is_array($structure->headers) &&
-                (isset($structure->headers['subject']) || $structure->headers['from'] || $structure->headers['to'])) {
+                (isset($structure->headers['subject']) || isset($structure->headers['from']) || isset($structure->headers['to']))) {
             $c = new stdClass;
             $c->type = 'headers';
             $c->headers = $structure->headers;
@@ -515,10 +527,10 @@ class rcube_message
         $plugin = $this->app->plugins->exec_hook('message_part_structure',
             array('object' => $this, 'structure' => $structure,
                 'mimetype' => $mimetype, 'recursive' => $recursive));
-
+        /*
         if ($plugin['abort'])
             return;
-
+        */
         $structure = $plugin['structure'];
         list($message_ctype_primary, $message_ctype_secondary) = explode('/', $plugin['mimetype']);
 
@@ -550,6 +562,10 @@ class rcube_message
         else if ($mimetype == 'multipart/alternative'
             && is_array($structure->parts) && count($structure->parts) > 1
         ) {
+            $plain_part = null;
+            $enriched_part = null;
+            $html_part = null;
+            $related_part = null;
             // get html/plaintext parts, other add to attachments list
             foreach ($structure->parts as $p => $sub_part) {
                 $sub_mimetype = $sub_part->mimetype;
@@ -564,7 +580,7 @@ class rcube_message
                 // one text/plain or text/html part here. There's no way to choose
                 // which one is better, so we'll display first of them and add
                 // others as attachments (#1489358)
-
+                
                 // check if sub part is
                 if ($is_multipart)
                     $related_part = $p;
@@ -666,7 +682,7 @@ class rcube_message
                 $secondary_type = $mail_part->ctype_secondary;
 
                 // real content-type of message/rfc822
-                if ($mail_part->real_mimetype) {
+                if (isset($mail_part->real_mimetype)) {
                     $part_orig_mimetype = $mail_part->mimetype;
                     $part_mimetype = $mail_part->real_mimetype;
                     list($primary_type, $secondary_type) = explode('/', $part_mimetype);
@@ -845,7 +861,7 @@ class rcube_message
         if (strlen($part->mime_id))
             $this->mime_parts[$part->mime_id] = &$part;
 
-        if (is_array($part->parts))
+        if (isset($part->parts) && is_array($part->parts))
             for ($i=0; $i<count($part->parts); $i++)
                 $this->get_mime_numbers($part->parts[$i]);
     }

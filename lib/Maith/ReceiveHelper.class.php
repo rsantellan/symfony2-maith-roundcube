@@ -43,11 +43,9 @@ class ReceiveHelper {
         return $unseen;
     }  
  
-    public static function readMessages($rcube)
+    public static function readMessages($rcube, $usePage = 1, $quantity = 0)
     {
       $threading = (bool) $rcube->get_storage()->get_threading();
-
-      //var_dump($threading);
 
       $imap = $rcube->get_storage();
       $mbox_name = $imap->get_folder();
@@ -57,7 +55,7 @@ class ReceiveHelper {
       $a_headers = NULL;
 
       if ($count) {
-          $a_headers = $imap->list_messages($mbox_name, NULL, 'date', 'asc');
+          $a_headers = $imap->list_messages($mbox_name, $usePage, 'date', 'asc', $quantity);
       }
 
       // update message count display
@@ -67,7 +65,7 @@ class ReceiveHelper {
 
       $list_cols   = $rcube->config->get('list_cols');
       $a_show_cols = !empty($list_cols) && is_array($list_cols) ? $list_cols : array('subject');
-
+      //var_dump($list_cols);
       // make sure 'threads' and 'subject' columns are present
       if (!in_array('subject', $a_show_cols))
           array_unshift($a_show_cols, 'subject');
@@ -75,7 +73,8 @@ class ReceiveHelper {
           array_unshift($a_show_cols, 'threads');
 
       // remove 'threads', 'attachment', 'flag', 'status' columns, we don't need them here
-      foreach (array('threads', 'attachment', 'flag', 'status', 'priority') as $col) {
+      $removedCols = array('threads', 'attachment', 'flag', 'status', 'priority');
+      foreach ($removedCols as $col) {
           if (($key = array_search($col, $a_show_cols)) !== FALSE) {
               unset($a_show_cols[$key]);
           }
@@ -101,10 +100,19 @@ class ReceiveHelper {
 
               // format each col; similar as in rcmail_message_list()
               foreach ($a_show_cols as $col) {
-                  $col_name = $col == 'fromto' ? $smart_col : $col;
-
+                  $col_name = $col;// == 'fromto' ? $smart_col : $col;
+                  if($col == 'fromto')
+                  {
+                   if($mbox_name != 'INBOX'){
+                      $col_name = 'to';
+                    }else{
+                      $col_name = 'from';
+                    } 
+                  }
+                  
+                  //var_dump($col);
                   if (in_array($col_name, array('from', 'to', 'cc', 'replyto')))
-                      $cont = rcmail_address_string($header->$col_name, 3, false, null, $header->charset);
+                      $cont = FormatHelper::rcmail_address_string($rcube, $header->$col_name, 3, false, null, $header->charset);
                   else if ($col == 'subject') {
                       $cont = trim(rcube_mime::decode_header($header->$col, $header->charset));
                       if (!$cont) $cont = $rcube->gettext('nosubject');
@@ -116,29 +124,39 @@ class ReceiveHelper {
 
                     $cont = FormatHelper::format_date($rcube, $header->date);
                   }
-                  else if ($col == 'folder')
-                      $cont = rcube::Q(rcube_charset::convert($header->folder, 'UTF7-IMAP'));
+                  else if ($col == 'folder'){
+                    $cont = rcube::Q(rcube_charset::convert($header->folder, 'UTF7-IMAP'));
+                  }
                   else
+                  {
+                    if(isset($header->$col))
+                    {
                       $cont = rcube::Q($header->$col);
+                    }
+                    else
+                    {
+                      $cont = '';
+                    }
+                  }
 
                   $a_msg_cols[$col] = $cont;
               }
 
 
               $a_msg_flags = array_change_key_case(array_map('intval', (array) $header->flags));
-              if ($header->depth)
+              if (isset($header->depth))
                   $a_msg_flags['depth'] = $header->depth;
-              else if ($header->has_children)
+              else if (isset($header->has_children))
                   $roots[] = $header->uid;
-              if ($header->parent_uid)
+              if (isset($header->parent_uid))
                   $a_msg_flags['parent_uid'] = $header->parent_uid;
-              if ($header->has_children)
+              if (isset($header->has_children))
                   $a_msg_flags['has_children'] = $header->has_children;
-              if ($header->unread_children)
+              if (isset($header->unread_children))
                   $a_msg_flags['unread_children'] = $header->unread_children;
-              if ($header->others['list-post'])
+              if (isset($header->others['list-post']))
                   $a_msg_flags['ml'] = 1;
-              if ($header->priority)
+              if (isset($header->priority))
                   $a_msg_flags['prio'] = (int) $header->priority;
 
               $a_msg_flags['ctype'] = rcube::Q($header->ctype);
@@ -169,7 +187,7 @@ class ReceiveHelper {
         }
         // mimetypes supported by the browser (default settings)
         $mimetypes = (array)$rcube->config->get('client_mimetypes');
-        //var_dump($message);
+        
         // Remove unsupported types, which makes that attachment which cannot be
         // displayed in a browser will be downloaded directly without displaying an overlay page
         if (empty($_SESSION['browser_caps']['pdf']) && ($key = array_search('application/pdf', $mimetypes)) !== false) {
@@ -193,7 +211,8 @@ class ReceiveHelper {
             foreach ($message->attachments as $attach_prop) {
                 $filename = FormatHelper::rcmail_attachment_name($rcube, $attach_prop, true);
                 $filesize = FormatHelper::message_part_size($rcube, $attach_prop);
-                if ($attrib['maxlength'] && mb_strlen($filename) > $attrib['maxlength']) {
+                
+                if (isset($attrib) && $attrib['maxlength'] && mb_strlen($filename) > $attrib['maxlength']) {
                     $title    = $filename;
                     $filename = abbreviate_string($filename, $attrib['maxlength']);
                 }
@@ -220,9 +239,80 @@ class ReceiveHelper {
                   );
             }
         }
+        $out = '';
+        foreach($message->parts as $part)
+        {
+          
+          if ($part->type == 'headers') {
+                $out .= html::div('message-partheaders', rcmail_message_headers(sizeof($header_attrib) ? $header_attrib : null, $part->headers));
+          }
+          else if ($part->type == 'content') {
+              // unsupported (e.g. encrypted)
+              if (isset($part->realtype)) {
+                  if ($part->realtype == 'multipart/encrypted' || $part->realtype == 'application/pkcs7-mime') {
+                      $out .= html::span('part-notice', $message->gettext('encryptedmessage'));
+                  }
+                  continue;
+              }
+              else if (!$part->size) {
+                  continue;
+              }
+
+              // Check if we have enough memory to handle the message in it
+              // #1487424: we need up to 10x more memory than the body
+              else if (!rcube_utils::mem_check($part->size * 10)) {
+                  $out .= html::span('part-notice', $rcube->gettext('messagetoobig'). ' '
+                      . html::a('?_task=mail&_action=get&_download=1&_uid='.$message->uid.'&_part='.$part->mime_id
+                          .'&_mbox='. urlencode($message->folder), $rcube->gettext('download')));
+                  continue;
+              }
+
+              // fetch part body
+              $body = $message->get_part_body($part->mime_id, true);
+
+              // extract headers from message/rfc822 parts
+              if ($part->mimetype == 'message/rfc822') {
+                  $msgpart = rcube_mime::parse_message($body);
+                  if (!empty($msgpart->headers)) {
+                      $part = $msgpart;
+                      $out .= html::div('message-partheaders', rcmail_message_headers(sizeof($header_attrib) ? $header_attrib : null, $part->headers));
+                  }
+              }
+
+              // message is cached but not exists (#1485443), or other error
+              if ($body === false) {
+                  rcmail_message_error($message->uid);
+              }
+
+              $plugin = $rcube->plugins->exec_hook('message_body_prefix',
+                  array('part' => $part, 'prefix' => ''));
+              
+              $safe_mode = false;
+              
+              $body = FormatHelper::rcmail_print_body($rcube, $body, $part, array('safe' => $safe_mode, 'plain' => !$rcube->config->get('prefer_html')));
+
+              if ($part->ctype_secondary == 'html') {
+                  $body     = $body;//rcmail_html4inline($body, $attrib['id'], 'rcmBody', $attrs, $safe_mode);
+                  $div_attr = array('class' => 'message-htmlpart');
+                  $style    = array();
+
+                  if (!empty($attrs)) {
+                      foreach ($attrs as $a_idx => $a_val)
+                          $style[] = $a_idx . ': ' . $a_val;
+                      if (!empty($style))
+                          $div_attr['style'] = implode('; ', $style);
+                  }
+
+                  $out .= html::div($div_attr, $plugin['prefix'] . $body);
+              }
+              else
+                  $out .= html::div('message-part', $plugin['prefix'] . $body);
+          }
+        }
         return array(
             'message'=> $message,
             'attachments' => $attachments,
+            'body' => $out,
         );
     }
     

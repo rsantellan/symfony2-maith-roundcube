@@ -152,7 +152,7 @@ class rcube_user
                 }
             }
 
-            if ($this->data['preferences']) {
+            if (isset($this->data['preferences'])) {
                 $prefs += (array)unserialize($this->data['preferences']);
             }
         }

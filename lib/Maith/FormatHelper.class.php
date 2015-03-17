@@ -85,7 +85,7 @@ class FormatHelper {
     *
     * @return string Formatted date string
     */
-    function format_date($rcube, $date, $format = null, $convert = true)
+    public static function format_date($rcube, $date, $format = null, $convert = true)
     {
        if (is_object($date) && is_a($date, 'DateTime')) {
            $timestamp = $date->format('U');
@@ -120,7 +120,6 @@ class FormatHelper {
            catch (Exception $e) {
            }
        }
-
        // define date format depending on current time
        if (!$format) {
            $now         = time();
@@ -159,7 +158,7 @@ class FormatHelper {
            }
 
            // write char "as-is"
-           if ($format[$i] == ' ' || $format[$i-1] == "\\") {
+           if ($format[$i] == ' ' || (isset($format[$i-1]) && $format[$i-1] == "\\")) {
                $out .= $format[$i];
            }
            // weekday (short)
@@ -186,7 +185,7 @@ class FormatHelper {
            }
        }
 
-       if ($today) {
+       if (isset($today)) {
            $label = $rcube->gettext('today');
            // replcae $ character with "Today" label (#1486120)
            if (strpos($out, '$') !== false) {
@@ -229,7 +228,7 @@ class FormatHelper {
      *
      * @return string Formatted HTML string
      */
-    function rcmail_plain_body($body, $flowed = false)
+    public static function rcmail_plain_body($body, $flowed = false)
     {
         $options   = array('flowed' => $flowed, 'wrap' => !$flowed, 'replacer' => 'rcmail_string_replacer');
         $text2html = new rcube_text2html($body, false, $options);
@@ -246,7 +245,7 @@ class FormatHelper {
      *
      * @return string Part size (and unit)
      */
-    function message_part_size($rcube, $part)
+    public static function message_part_size($rcube, $part)
     {
         if (isset($part->d_parameters['size'])) {
             $size = show_bytes($rcube, (int)$part->d_parameters['size']);
@@ -263,7 +262,7 @@ class FormatHelper {
         return $size;
     }    
     
-    function rcmail_attachment_name($rcube, $attachment, $display = false)
+    public static function rcmail_attachment_name($rcube, $attachment, $display = false)
     {
         $filename = $attachment->filename;
 
@@ -301,7 +300,7 @@ class FormatHelper {
      *
      * @return string Byte string
      */
-    function show_bytes($rcube, $bytes, &$unit = null)
+    public static function show_bytes($rcube, $bytes, &$unit = null)
     {
         if ($bytes >= 1073741824) {
             $unit = 'GB';
@@ -324,5 +323,295 @@ class FormatHelper {
 
         return $str;
     }    
+    
+    public static function rcmail_address_string($rcube, $input, $max=null, $linked=false, $addicon=null, $default_charset=null, $title=null)
+    {
+        //global $RCMAIL, $PRINT_MODE;
+
+        $a_parts = rcube_mime::decode_address_list($input, null, true, $default_charset);
+
+        if (!sizeof($a_parts)) {
+            return $input;
+        }
+
+        $c   = count($a_parts);
+        $j   = 0;
+        $out = '';
+        $allvalues  = array();
+        $show_email = $rcube->config->get('message_show_email');
+
+        if ($addicon && !isset($_SESSION['writeable_abook'])) {
+            $_SESSION['writeable_abook'] = $rcube->get_address_sources(true) ? true : false;
+        }
+
+        foreach ($a_parts as $part) {
+            $j++;
+
+            $name   = $part['name'];
+            $mailto = $part['mailto'];
+            $string = $part['string'];
+            $valid  = rcube_utils::check_email($mailto, false);
+
+            // phishing email prevention (#1488981), e.g. "valid@email.addr <phishing@email.addr>"
+            if (!$show_email && $valid && $name && $name != $mailto && strpos($name, '@')) {
+                $name = '';
+            }
+
+            // IDNA ASCII to Unicode
+            if ($name == $mailto)
+                $name = rcube_utils::idn_to_utf8($name);
+            if ($string == $mailto)
+                $string = rcube_utils::idn_to_utf8($string);
+            $mailto = rcube_utils::idn_to_utf8($mailto);
+
+             if ($valid) {
+                if ($linked) {
+                    $attrs = array(
+                        'href'    => 'mailto:' . $mailto,
+                        'class'   => 'rcmContactAddress',
+                        'onclick' => sprintf("return %s.command('compose','%s',this)",
+                            rcmail_output::JS_OBJECT_NAME, rcube::JQ(format_email_recipient($mailto, $name))),
+                    );
+
+                    if ($show_email && $name && $mailto) {
+                        $content = rcube::Q($name ? sprintf('%s <%s>', $name, $mailto) : $mailto);
+                    }
+                    else {
+                        $content = rcube::Q($name ? $name : $mailto);
+                        $attrs['title'] = $mailto;
+                    }
+
+                    $address = html::a($attrs, $content);
+                }
+                else {
+                    $address = html::span(array('title' => $mailto, 'class' => "rcmContactAddress"),
+                        rcube::Q($name ? $name : $mailto));
+                }
+
+                if ($addicon && $_SESSION['writeable_abook']) {
+                    $address .= html::a(array(
+                            'href'    => "#add",
+                            'title'   => $RCMAIL->gettext('addtoaddressbook'),
+                            'class'   => 'rcmaddcontact',
+                            'onclick' => sprintf("return %s.command('add-contact','%s',this)",
+                                rcmail_output::JS_OBJECT_NAME, rcube::JQ($string)),
+                        ),
+                        html::img(array(
+                            'src' => $RCMAIL->output->abs_url($addicon, true),
+                            'alt' => "Add contact",
+                    )));
+                }
+            }
+            else {
+                $address = '';
+                if ($name)
+                    $address .= rcube::Q($name);
+                if ($mailto)
+                    $address = trim($address . ' ' . rcube::Q($name ? sprintf('<%s>', $mailto) : $mailto));
+            }
+
+            $address = html::span('adr', $address);
+            $allvalues[] = $address;
+
+            if (isset($moreadrs))
+                $out .= ($out ? ', ' : '') . $address;
+
+            if ($max && $j == $max && $c > $j) {
+                if ($linked) {
+                    $moreadrs = $c - $j;
+                }
+                else {
+                    $out .= '...';
+                    break;
+                }
+            }
+        }
+
+        if (isset($moreadrs)) {
+            
+            $out .= ' ' . html::a(array(
+                    'href'    => '#more',
+                    'class'   => 'morelink',
+                    'onclick' => sprintf("return %s.show_popup_dialog('%s','%s')",
+                        rcmail_output::JS_OBJECT_NAME,
+                        rcube::JQ(join(', ', $allvalues)),
+                        rcube::JQ($title))
+                ),
+                rcube::Q($rcube->gettext(array('name' => 'andnmore', 'vars' => array('nr' => $moreadrs)))));
+            
+        }
+
+        return $out;
+    }
+    
+    /**
+     * Convert the given message part to proper HTML
+     * which can be displayed the message view
+     *
+     * @param string             Message part body
+     * @param rcube_message_part Message part
+     * @param array              Display parameters array
+     *
+     * @return string Formatted HTML string
+     */
+    public static function rcmail_print_body($rcube, $body, $part, $p = array())
+    {
+      //var_dump($body);
+      //var_dump($part);
+        // trigger plugin hook
+        $data = $rcube->plugins->exec_hook('message_part_before',
+            array('type' => $part->ctype_secondary, 'body' => $body, 'id' => $part->mime_id)
+                + $p + array('safe' => false, 'plain' => false, 'inline_html' => true));
+
+        // convert html to text/plain
+        if ($data['plain'] && ($data['type'] == 'html' || $data['type'] == 'enriched')) {
+            if ($data['type'] == 'enriched') {
+                $data['body'] = rcube_enriched::to_html($data['body']);
+            }
+
+            $txt  = new rcube_html2text($data['body'], false, true);
+            $body = $txt->get_text();
+            $part->ctype_secondary = 'plain';
+        }
+        // text/html
+        else if ($data['type'] == 'html') {
+            $replaces = '';
+            if(isset($part->replaces))
+            {
+              $replaces = $part->replaces;
+            }
+            $body = self::rcmail_wash_html($data['body'], $data, $replaces);
+            $part->ctype_secondary = $data['type'];
+        }
+        // text/enriched
+        else if ($data['type'] == 'enriched') {
+            $body = rcube_enriched::to_html($data['body']);
+            $body = rcmail_wash_html($body, $data, $part->replaces);
+            $part->ctype_secondary = 'html';
+        }
+        else {
+            // assert plaintext
+            $body = $data['body'];
+            $part->ctype_secondary = $data['type'] = 'plain';
+        }
+
+        // free some memory (hopefully)
+        unset($data['body']);
+
+        // plaintext postprocessing
+        if ($part->ctype_secondary == 'plain') {
+            $body = FormatHelper::rcmail_plain_body($body, true);
+        }
+
+        // allow post-processing of the message body
+        $data = $rcube->plugins->exec_hook('message_part_after',
+            array('type' => $part->ctype_secondary, 'body' => $body, 'id' => $part->mime_id) + $data);
+
+        return $data['body'];
+    }    
+    
+    /**
+      * Cleans up the given message HTML Body (for displaying)
+      *
+      * @param string HTML
+      * @param array  Display parameters 
+      * @param array  CID map replaces (inline images)
+      * @return string Clean HTML
+      */
+     public static function rcmail_wash_html($html, $p, $cid_replaces)
+     {
+         //global $REMOTE_OBJECTS;
+
+         $p += array('safe' => false, 'inline_html' => true);
+
+         // charset was converted to UTF-8 in rcube_storage::get_message_part(),
+         // change/add charset specification in HTML accordingly,
+         // washtml cannot work without that
+         $meta = '<meta http-equiv="Content-Type" content="text/html; charset='.RCUBE_CHARSET.'" />';
+
+         // remove old meta tag and add the new one, making sure
+         // that it is placed in the head (#1488093)
+         $html = preg_replace('/<meta[^>]+charset=[a-z0-9-_]+[^>]*>/Ui', '', $html);
+         $html = preg_replace('/(<head[^>]*>)/Ui', '\\1'.$meta, $html, -1, $rcount);
+         if (!$rcount) {
+             $html = '<head>' . $meta . '</head>' . $html;
+         }
+
+         // clean HTML with washhtml by Frederic Motte
+         $wash_opts = array(
+             'show_washed'   => false,
+             'allow_remote'  => true,
+             'blocked_src'   => 'program/resources/blocked.gif',
+             'charset'       => RCUBE_CHARSET,
+             'cid_map'       => $cid_replaces,
+             'html_elements' => array('body'),
+         );
+
+         if (!$p['inline_html']) {
+             $wash_opts['html_elements'] = array('html','head','title','body');
+         }
+         if ($p['safe']) {
+             $wash_opts['html_elements'][] = 'link';
+             $wash_opts['html_attribs'] = array('rel','type');
+         }
+
+         // overwrite washer options with options from plugins
+         if (isset($p['html_elements']))
+             $wash_opts['html_elements'] = $p['html_elements'];
+         if (isset($p['html_attribs']))
+             $wash_opts['html_attribs'] = $p['html_attribs'];
+
+         // initialize HTML washer
+         $washer = new rcube_washtml($wash_opts);
+
+         //if (!$p['skip_washer_form_callback']) {
+             $washer->add_callback('form', 'rcmail_washtml_callback');
+         //}
+
+         // allow CSS styles, will be sanitized by rcmail_washtml_callback()
+         //if (!$p['skip_washer_style_callback']) {
+             $washer->add_callback('style', 'rcmail_washtml_callback');
+         //}
+
+         // Remove non-UTF8 characters (#1487813)
+         $html = rcube_charset::clean($html);
+
+         $html = $washer->wash($html);
+         //$REMOTE_OBJECTS = $washer->extlinks;
+
+         return $html;
+     }
+     
+    /**
+     * Callback function for washtml cleaning class
+     */
+    public static function rcmail_washtml_callback($tagname, $attrib, $content, $washtml)
+    {
+        switch ($tagname) {
+        case 'form':
+            $out = html::div('form', $content);
+            break;
+
+        case 'style':
+            // decode all escaped entities and reduce to ascii strings
+            $stripped = preg_replace('/[^a-zA-Z\(:;]/', '', rcube_utils::xss_entity_decode($content));
+
+            // now check for evil strings like expression, behavior or url()
+            if (!preg_match('/expression|behavior|javascript:|import[^a]/i', $stripped)) {
+                if (!$washtml->get_config('allow_remote') && stripos($stripped, 'url('))
+                    $washtml->extlinks = true;
+                else
+                    $out = html::tag('style', array('type' => 'text/css'), $content);
+                break;
+            }
+
+        default:
+            $out = '';
+        }
+
+        return $out;
+    }     
 }
+
+
 

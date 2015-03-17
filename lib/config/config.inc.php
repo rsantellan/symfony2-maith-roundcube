@@ -83,3 +83,5 @@ $config['imap_cache'] = 'db';
 
 // Enables messages cache. Only 'db' cache is supported.
 $config['messages_cache'] = true;
+
+return $config;

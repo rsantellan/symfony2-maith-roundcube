@@ -322,11 +322,6 @@ class rcube_config
                     $this->merge($config);
                     $success = true;
                 }
-                // deprecated name of config variable
-                if (is_array($rcmail_config)) {
-                    $this->merge($rcmail_config);
-                    $success = true;
-                }
             }
         }
 
@@ -447,10 +442,16 @@ class rcube_config
         }
 
         // larry is the new default skin :-)
-        if ($prefs['skin'] == 'default') {
-            $prefs['skin'] = self::DEFAULT_SKIN;
+        if(!isset($prefs['skin']))
+        {
+          $prefs['skin'] = self::DEFAULT_SKIN;
         }
-
+        else 
+        {
+          if ($prefs['skin'] == 'default') {
+              $prefs['skin'] = self::DEFAULT_SKIN;
+          }
+        }
         $this->userprefs = $prefs;
         $this->prop      = array_merge($this->prop, $prefs);
     }
@@ -601,7 +602,7 @@ class rcube_config
     private function client_timezone()
     {
         // @TODO: remove this legacy timezone handling in the future
-        $props = $this->fix_legacy_props(array('timezone' => $_SESSION['timezone']));
+        //$props = $this->fix_legacy_props(array('timezone' => $_SESSION['timezone']));
 
         if (!empty($props['timezone'])) {
             try {

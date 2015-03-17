@@ -149,10 +149,25 @@ class rcube_washtml
      */
     public function __construct($p = array())
     {
+        $html_att = array();
+        if(isset($p['html_attribs']))
+        {
+          $html_att = $p['html_attribs'];
+        }
+        $ignore_att = array();
+        if(isset($p['ignore_elements']))
+        {
+          $ignore_att = $p['ignore_elements'];
+        }
+        $void_elements = array();
+        if(isset($p['void_elements']))
+        {
+          $void_elements = $p['void_elements'];
+        }
         $this->_html_elements   = array_flip((array)$p['html_elements']) + array_flip(self::$html_elements) ;
-        $this->_html_attribs    = array_flip((array)$p['html_attribs']) + array_flip(self::$html_attribs);
-        $this->_ignore_elements = array_flip((array)$p['ignore_elements']) + array_flip(self::$ignore_elements);
-        $this->_void_elements   = array_flip((array)$p['void_elements']) + array_flip(self::$void_elements);
+        $this->_html_attribs    = array_flip((array)$html_att) + array_flip(self::$html_attribs);
+        $this->_ignore_elements = array_flip((array)$ignore_att) + array_flip(self::$ignore_elements);
+        $this->_void_elements   = array_flip((array)$void_elements) + array_flip(self::$void_elements);
 
         unset($p['html_elements'], $p['html_attribs'], $p['ignore_elements'], $p['void_elements']);
 
@@ -251,9 +266,7 @@ class rcube_washtml
                 || ($key == 'src' && preg_match('/^(img|source)$/i', $node->tagName))
                 || ($key == 'poster' && strtolower($node->tagName) == 'video')
             ) {
-                if (($src = $this->config['cid_map'][$value])
-                    || ($src = $this->config['cid_map'][$this->config['base_url'].$value])
-                ) {
+                if ((isset($this->config['cid_map'][$value]) && $src = $this->config['cid_map'][$value]) || (isset($this->config['cid_map'][$this->config['base_url'].$value]) && $src = $this->config['cid_map'][$this->config['base_url'].$value])) {
                     $t .= ' ' . $key . '="' . htmlspecialchars($src, ENT_QUOTES) . '"';
                 }
                 else if (preg_match('/^(http|https|ftp):.+/i', $value)) {
@@ -313,9 +326,9 @@ class rcube_washtml
             switch($node->nodeType) {
             case XML_ELEMENT_NODE: //Check element
                 $tagName = strtolower($node->tagName);
-                if ($callback = $this->handlers[$tagName]) {
-                    $dump .= call_user_func($callback, $tagName,
-                        $this->wash_attribs($node), $this->dumpHtml($node, $level), $this);
+                
+                if (isset($this->handlers[$tagName]) && $callback = $this->handlers[$tagName]) {
+                    $dump .= call_user_func('FormatHelper::'.$callback, $tagName, $this->wash_attribs($node), $this->dumpHtml($node, $level), $this);
                 }
                 else if (isset($this->_html_elements[$tagName])) {
                     $content = $this->dumpHtml($node, $level);
@@ -611,7 +624,7 @@ class rcube_washtml
                 }
             }
 
-            if (!$q && $style[$i] == ' ' && !preg_match('/[,\(]/', $style[$i-1])) {
+            if (!isset($q) && $style[$i] == ' ' && !preg_match('/[,\(]/', $style[$i-1])) {
                 $result[] = substr($style, $p, $i - $p);
                 $p = $i + 1;
             }
