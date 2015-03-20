@@ -116,15 +116,89 @@ class RoundcubeHelper {
   public function readEmails($folder = 'Inbox', $pager = 1, $quantity = 10)
   {
     
-    return ReceiveHelper::readMessages($this->rcube, $pager, $quantity);
+    return ReceiveHelper::readMessages($this->rcube, $folder, $pager, $quantity);
   }
   
   public function readEmail($folder, $uid)
   {
     
-    return ReceiveHelper::readMessage($this->rcube, $uid);
+    return ReceiveHelper::readMessage($this->rcube, $folder, $uid);
   }
   
+  public function moveMessage($folderFrom, $folderTo, $uid)
+  {
+    
+    return $this->rcube->get_storage()->move_message($uid, $folderTo, $folderFrom);
+  }
+
+
+  public function search($folder, $criteria, $pager = 1, $quantity = 1000)
+  {
+    $searchStringFound = true;
+    $searchString = '';
+    if(substr_count($criteria, 'FROM:'))
+    {
+      $searchStringFound = false;
+      $searchString = str_replace('FROM  ', 'FROM ', str_replace('FROM:', 'FROM ', $criteria));
+    }
+    
+    if($searchStringFound && substr_count($criteria, 'TEXT:'))
+    {
+      $searchStringFound = false;
+      $searchString = str_replace('TEXT:', 'TEXT ', $criteria);
+    }
+    
+    if($searchStringFound && substr_count($criteria, 'SUBJECT:'))
+    {
+      $searchStringFound = false;
+      $searchString = str_replace('SUBJECT:', 'SUBJECT ', $criteria);
+    }
+    /*
+    if($criteria != 'ALL')
+    {
+        $this->searchAndReverse(sprintf('FROM %s', $criteria));
+        $this->searchAndReverse(sprintf('TEXT %s', $criteria));
+        $this->searchAndReverse(sprintf('SUBJECT %s', $criteria));
+    }
+    else
+    {
+      $this->searchAndReverse($criteria);
+    }  
+    */
+    /**
+     * 
+     * @param  array  $set  Search set, result from rcube_imap::get_search_set():
+     *                      0 - searching criteria, string
+     *                      1 - search result, rcube_result_index|rcube_result_thread
+     *                      2 - searching character set, string
+     *                      3 - sorting field, string
+     *                      4 - true if sorted, bool
+     */
+    $search = array(
+      $criteria,
+      new \rcube_result_index($folder, '* SORT'),
+      '',
+      'date',
+      true
+        
+    );
+    $this->rcube->get_storage()->set_search_set($search);
+    return ReceiveHelper::readMessages($this->rcube, $folder, $pager, $quantity);
+  }
+  
+  
+  public function closeConnections()
+  {
+    $this->rcube->get_storage()->close();
+  }
+  
+  /**
+   * 
+   * @deprecated since version 0.1 Use Zend Mail
+   * @param type $getSpecial
+   * @return type
+   * 
+   */
   public function retrieveFolders($getSpecial = true)
   {
     $special = array();
@@ -133,19 +207,6 @@ class RoundcubeHelper {
       $special = $this->rcube->get_storage()->get_special_folders();
     }
     return array_merge($this->rcube->get_storage()->list_folders(), $special);
-    //$delimiter =  $this->rcube->get_storage()->get_hierarchy_delimiter();
-    /*
-    var_dump($this->rcube->get_storage()->get_folder());
-    var_dump($this->rcube->get_storage()->get_namespace());
-    var_dump($this->rcube->get_storage()->folder_namespace($this->rcube->get_storage()->get_folder()));
-    var_dump($delimiter);
-    echo '<hr/>';
-    var_dump($this->rcube->get_storage()->list_mailboxes());
-    var_dump($this->rcube->get_storage()->list_folders_subscribed());
-    var_dump($this->rcube->get_storage()->list_folders_subscribed_direct());
-    var_dump($special);
-    var_dump($this->rcube->get_storage()->list_folders());
-    */    
   }
 }
 

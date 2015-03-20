@@ -602,7 +602,7 @@ class rcube_imap_cache
         }
         else {
             // Remove the message from internal cache
-            if (!empty($uids) && ($message = $this->icache['__message'])
+            if (!empty($uids) && isset($this->icache['__message']) && ($message = $this->icache['__message'])
                 && $message['mailbox'] === $mailbox
                 && in_array($message['object']->uid, (array)$uids)
             ) {

@@ -716,10 +716,11 @@ class rcube
      */
     public function load_language($lang = null, $add = array(), $merge = array())
     {
-        $lang = $this->language_prop(($lang ? $lang : $_SESSION['language']));
+        
+        $lang = $this->language_prop(($lang ? $lang : 'en'));
 
         // load localized texts
-        if (empty($this->texts) || $lang != $_SESSION['language']) {
+        if (empty($this->texts) || $lang != 'en') {
             $this->texts = array();
 
             // handle empty lines after closing PHP tag in localization files

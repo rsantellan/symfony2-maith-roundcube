@@ -578,7 +578,7 @@ class rcube_imap extends rcube_storage
         if (!strlen($folder)) {
             $folder = $this->folder;
         }
-
+        //var_dump($folder);
         return $this->countmessages($folder, $mode, $force, $status);
     }
 
@@ -598,6 +598,7 @@ class rcube_imap extends rcube_storage
     protected function countmessages($folder, $mode='ALL', $force=false, $status=true)
     {
         $mode = strtoupper($mode);
+        //var_dump($mode);
         // count search set, assume search set is always up-to-date (don't check $force flag)
         if ($this->search_string && $folder == $this->folder && ($mode == 'ALL' || $mode == 'THREADS')) {
             if ($mode == 'ALL') {
@@ -613,17 +614,19 @@ class rcube_imap extends rcube_storage
         // any skip_deleted setting
 
         $a_folder_cache = $this->get_cache('messagecount');
-        
+        //var_dump($a_folder_cache);
+        $force = true;
         // return cached value
         if (!$force && is_array($a_folder_cache[$folder]) && isset($a_folder_cache[$folder][$mode])) {
             return $a_folder_cache[$folder][$mode];
         }
 
-        if (!is_array($a_folder_cache[$folder])) {
+        if (isset($a_folder_cache[$folder]) && !is_array($a_folder_cache[$folder])) {
             $a_folder_cache[$folder] = array();
         }
 
         if ($mode == 'THREADS') {
+          //var_dump('threads');
             $res   = $this->threads($folder);
             $count = $res->count();
 
@@ -644,6 +647,7 @@ class rcube_imap extends rcube_storage
         }
         // use SEARCH for message counting
         else if ($mode != 'EXISTS' && !empty($this->options['skip_deleted'])) {
+          //var_dump('aca112?');
             $search_str = "ALL UNDELETED";
             $keys       = array('COUNT');
 
@@ -681,7 +685,9 @@ class rcube_imap extends rcube_storage
                 $count = $this->conn->countUnseen($folder);
             }
             else {
+              //var_dump('acaasdads??12312');
                 $count = $this->conn->countMessages($folder);
+                //var_dump($count);
                 if ($status && $mode == 'ALL') {
                     $this->set_folder_stats($folder, 'cnt', $count);
                     $this->set_folder_stats($folder, 'maxuid', $count ? $this->id2uid($count, $folder) : 0);
@@ -771,7 +777,6 @@ class rcube_imap extends rcube_storage
         if (!strlen($folder)) {
             return array();
         }
-
         $this->set_sort_order($sort_field, $sort_order);
         $page = $page ? $page : $this->list_page;
 
@@ -786,14 +791,12 @@ class rcube_imap extends rcube_storage
 
         // get UIDs of all messages in the folder, sorted
         $index = $this->index($folder, $this->sort_field, $this->sort_order);
-
         if ($index->is_empty()) {
             return array();
         }
 
         $from = ($page-1) * $this->page_size;
         $to   = $from + $this->page_size;
-
         $index->slice($from, $to - $from);
 
         if ($slice) {
@@ -2790,8 +2793,9 @@ class rcube_imap extends rcube_storage
 
         // get cached folder list
         $a_mboxes = $this->get_cache($cache_key);
+        
         if (is_array($a_mboxes)) {
-            return $a_mboxes;
+            //return $a_mboxes;
         }
 
         // Give plugins a chance to provide a list of folders
@@ -2802,6 +2806,7 @@ class rcube_imap extends rcube_storage
             $a_mboxes = $data['folders'];
         }
         else {
+          var_dump('aca 2!');
             $a_mboxes = $this->list_folders_subscribed_direct($root, $name);
         }
 
@@ -2923,7 +2928,7 @@ class rcube_imap extends rcube_storage
         // get cached folder list
         $a_mboxes = $this->get_cache($cache_key);
         if (is_array($a_mboxes)) {
-            return $a_mboxes;
+            //return $a_mboxes;
         }
 
         // Give plugins a chance to provide a list of folders
@@ -2937,26 +2942,35 @@ class rcube_imap extends rcube_storage
             // retrieve list of folders from IMAP server
             $a_mboxes = $this->list_folders_direct($root, $name);
         }
-
+        /*
+        echo '<hr/>';
+        echo '<hr/>';
+        echo '<hr/>';
+        echo '<hr/>';
+        var_dump($a_mboxes);
+        */
         if (!is_array($a_mboxes)) {
             $a_mboxes = array();
         }
-
+        //var_dump((!$filter || $filter == 'mail') && !in_array('INBOX', $a_mboxes));
         // INBOX should always be available
         if ((!$filter || $filter == 'mail') && !in_array('INBOX', $a_mboxes)) {
             array_unshift($a_mboxes, 'INBOX');
         }
-
+        //echo '<hr/>';
+        //var_dump($a_mboxes);
         // cache folder attributes
         if ($root == '' && $name == '*' && empty($filter) && !empty($this->conn->data)) {
             $this->update_cache('mailboxes.attributes', $this->conn->data['LIST']);
         }
-
+        //echo '<hr/>';
+        //var_dump($a_mboxes);
         // filter folders list according to rights requirements
         if ($rights && $this->get_capability('ACL')) {
             $a_mboxes = $this->filter_rights($a_mboxes, $rights);
         }
-
+        //echo '<hr/>';
+        //var_dump($a_mboxes);
         // filter folders and sort them
         if (!$skip_sort) {
             $a_mboxes = $this->sort_folder_list($a_mboxes);
@@ -2964,7 +2978,8 @@ class rcube_imap extends rcube_storage
 
         // write folders list to cache
         $this->update_cache($cache_key, $a_mboxes);
-
+        //echo '<hr/>';
+        //var_dump($a_mboxes);
         return $a_mboxes;
     }
 
@@ -4180,18 +4195,29 @@ class rcube_imap extends rcube_storage
      */
     public function sort_folder_list($a_folders, $skip_default = false)
     {
+        //var_dump(array_values($this->get_special_folders()));
         $specials  = array_merge(array('INBOX'), array_values($this->get_special_folders()));
         $folders   = array();
-
+        //echo '<hr/>';
+        //echo '<hr/>';
+        //echo '<hr/>';
+        
+        //var_dump($a_folders);
+        //var_dump('sort_folder_list');
+        $keys = array_keys($a_folders);
+        //var_dump('keys');
+        //var_dump($keys);
         // convert names to UTF-8 and skip folders starting with '.'
         foreach ($a_folders as $folder) {
+          //var_dump($folder);
             if (isset($folder[0]) && $folder[0] != '.') {
+              //var_dump($folder[0]);
                 // for better performance skip encoding conversion
                 // if the string does not look like UTF7-IMAP
                 $folders[$folder] = strpos($folder, '&') === false ? $folder : rcube_charset::convert($folder, 'UTF7-IMAP');
             }
         }
-
+        //var_dump($folders);
         // sort folders
         // asort($folders, SORT_LOCALE_STRING) is not properly sorting case sensitive names
         uasort($folders, array($this, 'sort_folder_comparator'));
@@ -4212,7 +4238,10 @@ class rcube_imap extends rcube_storage
         $folders  = array_merge($specials, array_diff($folders, $specials));
 
         $this->sort_folder_specials(null, $folders, $specials, $out);
-
+        //echo '<hr/>';
+        //echo '<hr/>';
+        //echo '<hr/>';
+        //var_dump($out);
         return $out;
     }
 
@@ -4361,7 +4390,7 @@ class rcube_imap extends rcube_storage
     {
         $a_folder_cache = $this->get_cache('messagecount');
 
-        if (is_array($a_folder_cache[$folder])) {
+        if (isset($a_folder_cache[$folder]) && is_array($a_folder_cache[$folder])) {
             if ($mode) {
                 unset($a_folder_cache[$folder][$mode]);
             }

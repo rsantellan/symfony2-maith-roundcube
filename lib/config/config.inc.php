@@ -21,8 +21,8 @@ $config = array();
 // Currently supported db_providers: mysql, pgsql, sqlite, mssql or sqlsrv
 // For examples see http://pear.php.net/manual/en/package.database.mdb2.intro-dsn.php
 // NOTE: for SQLite use absolute path: 'sqlite:////full/path/to/sqlite.db?mode=0646'
-$config['db_dsnw'] = 'sqlite:////home/rodrigo/proyectos/testing/roundcube-framework-1.1.0/roundcube.sqlite?mode=0646';
-//$config['db_dsnw'] = 'mysql://root:root@localhost/roundcubemail';
+//$config['db_dsnw'] = 'sqlite:////home/rodrigo/proyectos/testing/roundcube-framework-1.1.0/roundcube.sqlite?mode=0646';
+$config['db_dsnw'] = 'mysql://root:root@localhost/contable3symfony';
 // The mail host chosen to perform the log-in.
 // Leave blank to show a textbox at login, give a list of hosts
 // to display a pulldown menu or set one host as string.
@@ -83,5 +83,6 @@ $config['imap_cache'] = 'db';
 
 // Enables messages cache. Only 'db' cache is supported.
 $config['messages_cache'] = true;
-
+$config['message_show_email'] = false;
+$config['db_prefix'] = 'rcube_';
 return $config;

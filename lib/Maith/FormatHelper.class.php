@@ -327,9 +327,8 @@ class FormatHelper {
     public static function rcmail_address_string($rcube, $input, $max=null, $linked=false, $addicon=null, $default_charset=null, $title=null)
     {
         //global $RCMAIL, $PRINT_MODE;
-
         $a_parts = rcube_mime::decode_address_list($input, null, true, $default_charset);
-
+        
         if (!sizeof($a_parts)) {
             return $input;
         }
@@ -339,31 +338,29 @@ class FormatHelper {
         $out = '';
         $allvalues  = array();
         $show_email = $rcube->config->get('message_show_email');
-
-        if ($addicon && !isset($_SESSION['writeable_abook'])) {
-            $_SESSION['writeable_abook'] = $rcube->get_address_sources(true) ? true : false;
-        }
+        
 
         foreach ($a_parts as $part) {
             $j++;
-
+            
             $name   = $part['name'];
             $mailto = $part['mailto'];
             $string = $part['string'];
             $valid  = rcube_utils::check_email($mailto, false);
-
             // phishing email prevention (#1488981), e.g. "valid@email.addr <phishing@email.addr>"
             if (!$show_email && $valid && $name && $name != $mailto && strpos($name, '@')) {
                 $name = '';
             }
-
             // IDNA ASCII to Unicode
             if ($name == $mailto)
-                $name = rcube_utils::idn_to_utf8($name);
+            {
+              $name = rcube_utils::idn_to_utf8($name);
+            }
             if ($string == $mailto)
-                $string = rcube_utils::idn_to_utf8($string);
+            {
+              $string = rcube_utils::idn_to_utf8($string);
+            }
             $mailto = rcube_utils::idn_to_utf8($mailto);
-
              if ($valid) {
                 if ($linked) {
                     $attrs = array(
@@ -409,12 +406,11 @@ class FormatHelper {
                 if ($mailto)
                     $address = trim($address . ' ' . rcube::Q($name ? sprintf('<%s>', $mailto) : $mailto));
             }
-
             $address = html::span('adr', $address);
             $allvalues[] = $address;
 
-            if (isset($moreadrs))
-                $out .= ($out ? ', ' : '') . $address;
+            //if (isset($moreadrs))
+            $out .= ($out ? ', ' : '') . $address;
 
             if ($max && $j == $max && $c > $j) {
                 if ($linked) {
@@ -426,7 +422,6 @@ class FormatHelper {
                 }
             }
         }
-
         if (isset($moreadrs)) {
             
             $out .= ' ' . html::a(array(

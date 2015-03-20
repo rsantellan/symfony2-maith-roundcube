@@ -167,7 +167,7 @@ class rcube_db
             if(isset($dsn['password'])){
               $password = $dsn['password'];
             }
-            $password = '';
+            //$password = '';
             $dbh = new PDO($dsn_string, $username, $password, $dsn_options);
 
             // don't throw exceptions or warnings
@@ -904,6 +904,7 @@ class rcube_db
      */
     public function now($interval = 0)
     {
+        $add = '';
         if ($interval) {
             $add = ' ' . ($interval > 0 ? '+' : '-') . ' INTERVAL ';
             $add .= $interval > 0 ? intval($interval) : intval($interval) * -1;

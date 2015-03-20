@@ -43,19 +43,21 @@ class ReceiveHelper {
         return $unseen;
     }  
  
-    public static function readMessages($rcube, $usePage = 1, $quantity = 0)
+    public static function readMessages($rcube, $folder, $usePage = 1, $quantity = 0)
     {
       $threading = (bool) $rcube->get_storage()->get_threading();
-
+      
       $imap = $rcube->get_storage();
+      $imap->set_folder($folder);
       $mbox_name = $imap->get_folder();
-
+      $imap->set_pagesize($quantity);
+      
       $imap->folder_sync($mbox_name);
       $count = $imap->count($mbox_name, $threading ? 'THREADS' : 'ALL', true);
       $a_headers = NULL;
-
+      
       if ($count) {
-          $a_headers = $imap->list_messages($mbox_name, $usePage, 'date', 'asc', $quantity);
+          $a_headers = $imap->list_messages($mbox_name, $usePage, 'date', 'desc', $quantity);
       }
 
       // update message count display
@@ -107,12 +109,14 @@ class ReceiveHelper {
                       $col_name = 'to';
                     }else{
                       $col_name = 'from';
-                    } 
+                    }
                   }
                   
-                  //var_dump($col);
+                  
                   if (in_array($col_name, array('from', 'to', 'cc', 'replyto')))
-                      $cont = FormatHelper::rcmail_address_string($rcube, $header->$col_name, 3, false, null, $header->charset);
+                  {
+                    $cont = FormatHelper::rcmail_address_string($rcube, $header->$col_name, 3, false, null, $header->charset);
+                  }
                   else if ($col == 'subject') {
                       $cont = trim(rcube_mime::decode_header($header->$col, $header->charset));
                       if (!$cont) $cont = $rcube->gettext('nosubject');
@@ -138,7 +142,6 @@ class ReceiveHelper {
                       $cont = '';
                     }
                   }
-
                   $a_msg_cols[$col] = $cont;
               }
 
@@ -177,10 +180,12 @@ class ReceiveHelper {
       );
     }
     
-    public static function readMessage($rcube, $uid)
+    public static function readMessage($rcube, $folder, $uid)
     {
         $imap = $rcube->get_storage();
+        $imap->set_folder($folder);
         $message = new rcube_message($uid);
+        //var_dump($message->headers);
         // set message charset as default
         if (!empty($message->headers->charset)) {
             $imap->set_charset($message->headers->charset);
