@@ -54,7 +54,7 @@ class ReceiveHelper {
       
       $imap->folder_sync($mbox_name);
       $count = $imap->count($mbox_name, $threading ? 'THREADS' : 'ALL', true);
-      $a_headers = NULL;
+      $a_headers = array();
       
       if ($count) {
           $a_headers = $imap->list_messages($mbox_name, $usePage, 'date', 'desc', $quantity);
@@ -84,7 +84,7 @@ class ReceiveHelper {
 
       $multifolder = false;
       $data  = array();
-
+      
       foreach ($a_headers as $header) {
               if (empty($header))
                   continue;
