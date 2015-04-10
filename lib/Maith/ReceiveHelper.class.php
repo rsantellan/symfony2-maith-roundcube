@@ -321,6 +321,55 @@ class ReceiveHelper {
         );
     }
     
+    public static function getAttachmentOfMessage($rcube, $folder, $uid, $attachmentName)
+    {
+      $imap = $rcube->get_storage();
+      $imap->set_folder($folder);
+      $message = new rcube_message($uid);
+      //var_dump($message->headers);
+      // set message charset as default
+      if (!empty($message->headers->charset)) {
+          $imap->set_charset($message->headers->charset);
+      }
+      if (sizeof($message->attachments)) {
+          foreach ($message->attachments as $attach_prop) {
+              $filename = FormatHelper::rcmail_attachment_name($rcube, $attach_prop, true);
+              $filesize = FormatHelper::message_part_size($rcube, $attach_prop);
+              if($filename == $attachmentName)
+              {
+                if (isset($attrib) && $attrib['maxlength'] && mb_strlen($filename) > $attrib['maxlength']) {
+                  $title    = $filename;
+                  $filename = abbreviate_string($filename, $attrib['maxlength']);
+                }
+                else {
+                    $title = '';
+                }
+
+                if ($attach_prop->size) {
+                    $size = ' ' .rcube::Q($filesize);
+                }
+
+                $mimetype = FormatHelper::rcmail_fix_mimetype($attach_prop->mimetype);
+                $class    = rcube_utils::file2class($mimetype, $filename);
+                $id       = 'attach' . $attach_prop->mime_id;
+                $name = rcube::Q($filename) . $size;
+                
+                $attachments[$attach_prop->mime_id] = array(
+                    'mimetype' => $mimetype,
+                    'class' => $class,
+                    'id' => $id,
+                    'name' => $name,
+                    'title' => rcube::Q($title),
+                    'filename' => rcube::Q($filename),
+                    'href' => $message->get_part_url($attach_prop->mime_id, false),
+                  );
+              }
+              
+          }
+      }
+      
+    }
+    
     
       /**
        * Handler for the 'messagebody' GUI object

@@ -71,6 +71,11 @@ class RoundcubeHelper {
   }
 
   
+  public function sendMessage($folder, $message)
+  {
+    $imap = $this->rcube->get_storage();
+    imap_append($imap,$folder,$message."\r\n","\\Seen"); 
+  }
   
   /*
   public function retrieveInstance($userId, $hostImap, $userImap, $passImap)
