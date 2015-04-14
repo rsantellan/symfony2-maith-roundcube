@@ -141,6 +141,7 @@ class RoundcubeHelper {
   {
     $searchStringFound = true;
     $searchString = '';
+    $aux = $criteria;
     if(substr_count($criteria, 'FROM:'))
     {
       $searchStringFound = false;
@@ -158,18 +159,7 @@ class RoundcubeHelper {
       $searchStringFound = false;
       $searchString = str_replace('SUBJECT:', 'SUBJECT ', $criteria);
     }
-    /*
-    if($criteria != 'ALL')
-    {
-        $this->searchAndReverse(sprintf('FROM %s', $criteria));
-        $this->searchAndReverse(sprintf('TEXT %s', $criteria));
-        $this->searchAndReverse(sprintf('SUBJECT %s', $criteria));
-    }
-    else
-    {
-      $this->searchAndReverse($criteria);
-    }  
-    */
+    
     /**
      * 
      * @param  array  $set  Search set, result from rcube_imap::get_search_set():
@@ -179,9 +169,13 @@ class RoundcubeHelper {
      *                      3 - sorting field, string
      *                      4 - true if sorted, bool
      */
+    $searchRcube = new \rcube_imap_search(array('skip_deleted' => true), $this->rcube->get_storage()->conn);
+    $data = $searchRcube->exec(array($folder), $criteria, null, 'date');
+    var_dump($data);
+    //$searchRcube->run();
     $search = array(
       $criteria,
-      new \rcube_result_index($folder, '* SORT'),
+      $data,
       '',
       'date',
       true

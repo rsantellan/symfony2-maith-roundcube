@@ -234,14 +234,18 @@ class rcube_mime
                 // aggregation as a whole.
 
                 $tmp[] = $text;
-                if ($next_match = $matches[$idx+1]) {
-                    if ($next_match[0][1] == $start
-                        && $next_match[1][0] == $charset
-                        && $next_match[2][0] == $encoding
-                    ) {
-                        continue;
-                    }
+                if(isset($matches[$idx+1]))
+                {
+                    if ($next_match = $matches[$idx+1]) {
+                        if ($next_match[0][1] == $start
+                            && $next_match[1][0] == $charset
+                            && $next_match[2][0] == $encoding
+                        ) {
+                            continue;
+                        }
+                    }    
                 }
+                
 
                 $count = count($tmp);
                 $text  = '';

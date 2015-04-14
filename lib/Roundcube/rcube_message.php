@@ -708,7 +708,7 @@ class rcube_message
                         array('object' => $this, 'structure' => $mail_part,
                             'mimetype' => $part_mimetype, 'recursive' => true));
 
-                    if ($plugin['abort'])
+                    if (false && $plugin['abort'])
                         continue;
 
                     if ($part_mimetype == 'text/html' && $mail_part->size) {
