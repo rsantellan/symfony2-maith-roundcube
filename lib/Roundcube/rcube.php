@@ -1331,6 +1331,7 @@ class rcube
             $log_dir = RCUBE_INSTALL_PATH . 'logs';
         }
 
+        $log_dir = sys_get_temp_dir();
         // try to open specific log file for writing
         $logfile = $log_dir.'/'.$name;
 

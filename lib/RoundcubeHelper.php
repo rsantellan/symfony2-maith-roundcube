@@ -137,6 +137,11 @@ class RoundcubeHelper {
   }
 
 
+  public function removeMessage($folder, $uid)
+  {
+    return $this->rcube->get_storage()->delete_message(array($uid), $folder);
+  }
+  
   public function search($folder, $criteria, $pager = 1, $quantity = 1000)
   {
     $searchStringFound = true;

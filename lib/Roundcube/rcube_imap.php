@@ -968,7 +968,7 @@ class rcube_imap extends rcube_storage
         }
 
         // gather messages from a multi-folder search
-        if ($this->search_set->multi) {
+        if (isset($this->search_set->multi) && $this->search_set->multi) {
             $page_size = $this->page_size;
             $sort_field = $this->sort_field;
             $search_set = $this->search_set;
@@ -1571,7 +1571,7 @@ class rcube_imap extends rcube_storage
             $results = $this->search_index($folder, $search, $charset, $sort_field);
         }
 
-        $sorted = $this->threading || $this->search_sorted || $plugin['search_sorted'] ? true : false;
+        $sorted = $this->threading || $this->search_sorted || (isset($plugin['search_sorted']) && $plugin['search_sorted']) ? true : false;
 
         $this->set_search_set(array($search, $results, $charset, $sort_field, $sorted));
 
@@ -2806,7 +2806,6 @@ class rcube_imap extends rcube_storage
             $a_mboxes = $data['folders'];
         }
         else {
-          var_dump('aca 2!');
             $a_mboxes = $this->list_folders_subscribed_direct($root, $name);
         }
 

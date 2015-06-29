@@ -613,6 +613,7 @@ class rcube_washtml
         $strlen = strlen($style);
         $result = array();
 
+        $q = true;
         // explode value
         for ($p=$i=0; $i < $strlen; $i++) {
             if (($style[$i] == "\"" || $style[$i] == "'") && $style[$i-1] != "\\") {
