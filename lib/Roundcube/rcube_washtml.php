@@ -616,7 +616,7 @@ class rcube_washtml
         $q = true;
         // explode value
         for ($p=$i=0; $i < $strlen; $i++) {
-            if (($style[$i] == "\"" || $style[$i] == "'") && $style[$i-1] != "\\") {
+            if (($style[$i] == "\"" || $style[$i] == "'") && isset($style[$i-1]) && $style[$i-1] != "\\") {
                 if ($q == $style[$i]) {
                     $q = false;
                 }
