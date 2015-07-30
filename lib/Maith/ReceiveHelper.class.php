@@ -125,7 +125,6 @@ class ReceiveHelper {
                   else if ($col == 'size')
                       $cont = FormatHelper::show_bytes($rcube, $header->$col);
                   else if ($col == 'date'){
-
                     $cont = FormatHelper::format_date($rcube, $header->date);
                   }
                   else if ($col == 'folder'){

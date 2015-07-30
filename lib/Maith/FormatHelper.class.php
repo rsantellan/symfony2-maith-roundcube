@@ -91,14 +91,13 @@ class FormatHelper {
            $timestamp = $date->format('U');
        }
        else {
+
            if (!empty($date)) {
                $timestamp = rcube_utils::strtotime($date);
            }
-
            if (empty($timestamp)) {
                return '';
            }
-
            try {
                $date = new DateTime("@".$timestamp);
            }
@@ -120,87 +119,7 @@ class FormatHelper {
            catch (Exception $e) {
            }
        }
-       // define date format depending on current time
-       if (!$format) {
-           $now         = time();
-           $now_date    = getdate($now);
-           $today_limit = mktime(0, 0, 0, $now_date['mon'], $now_date['mday'], $now_date['year']);
-           $week_limit  = mktime(0, 0, 0, $now_date['mon'], $now_date['mday']-6, $now_date['year']);
-           $pretty_date = $rcube->config->get('prettydate');
-
-           if ($pretty_date && $timestamp > $today_limit && $timestamp <= $now) {
-               $format = $rcube->config->get('date_today', $rcube->config->get('time_format', 'H:i'));
-               $today  = true;
-           }
-           else if ($pretty_date && $timestamp > $week_limit && $timestamp <= $now) {
-               $format = $rcube->config->get('date_short', 'D H:i');
-           }
-           else {
-               $format = $rcube->config->get('date_long', 'Y-m-d H:i');
-           }
-       }
-
-       // strftime() format
-       if (preg_match('/%[a-z]+/i', $format)) {
-           $format = strftime($format, $timestamp);
-           if ($stz) {
-               date_default_timezone_set($stz);
-           }
-           return $today ? ($rcube->gettext('today') . ' ' . $format) : $format;
-       }
-
-       // parse format string manually in order to provide localized weekday and month names
-       // an alternative would be to convert the date() format string to fit with strftime()
-       $out = '';
-       for ($i=0; $i<strlen($format); $i++) {
-           if ($format[$i] == "\\") {  // skip escape chars
-               continue;
-           }
-
-           // write char "as-is"
-           if ($format[$i] == ' ' || (isset($format[$i-1]) && $format[$i-1] == "\\")) {
-               $out .= $format[$i];
-           }
-           // weekday (short)
-           else if ($format[$i] == 'D') {
-               $out .= $rcube->gettext(strtolower(date('D', $timestamp)));
-           }
-           // weekday long
-           else if ($format[$i] == 'l') {
-               $out .= $rcube->gettext(strtolower(date('l', $timestamp)));
-           }
-           // month name (short)
-           else if ($format[$i] == 'M') {
-               $out .= $rcube->gettext(strtolower(date('M', $timestamp)));
-           }
-           // month name (long)
-           else if ($format[$i] == 'F') {
-               $out .= $rcube->gettext('long'.strtolower(date('M', $timestamp)));
-           }
-           else if ($format[$i] == 'x') {
-               $out .= strftime('%x %X', $timestamp);
-           }
-           else {
-               $out .= date($format[$i], $timestamp);
-           }
-       }
-
-       if (isset($today)) {
-           $label = $rcube->gettext('today');
-           // replcae $ character with "Today" label (#1486120)
-           if (strpos($out, '$') !== false) {
-               $out = preg_replace('/\$/', $label, $out, 1);
-           }
-           else {
-               $out = $label . ' ' . $out;
-           }
-       }
-
-       if ($stz) {
-           date_default_timezone_set($stz);
-       }
-
-       return $out;
+       return $timestamp;
     }  
     
     
