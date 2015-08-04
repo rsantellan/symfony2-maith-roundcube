@@ -211,6 +211,7 @@ class ReceiveHelper {
             $mbox_name = $rcube->get_storage()->get_folder();
             $rcube->storage->set_flag($message->uid, 'SEEN', $mbox_name);
         }
+        $message->populateEmailsAddresses($rcube);
         if (sizeof($message->attachments)) {
             foreach ($message->attachments as $attach_prop) {
                 $filename = FormatHelper::rcmail_attachment_name($rcube, $attach_prop, true);

@@ -60,6 +60,7 @@ class rcube_message
     public $subject = '';
     public $sender = null;
     public $is_safe = false;
+    public $emailAddresses = array();
 
     const BODY_MAX_SIZE = 1048576; // 1MB
 
@@ -1013,6 +1014,26 @@ class rcube_message
         }
 
         return $name;
+    }
+
+
+    public function populateEmailsAddresses($rcube)
+    {
+        $toAuxList = explode(',',$this->headers->get('to'));
+        unset($toAuxList[0]);
+        $this->emailAddresses['to'] = trim(implode($toAuxList, ','));
+
+        $pattern="/(?:[A-Za-z0-9!#$%&'*+=?^_`{|}~-]+(?:\.[A-Za-z0-9!#$%&'*+=?^_`{|}~-]+)*|\"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*\")@(?:(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\.)+[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[A-Za-z0-9-]*[A-Za-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/";
+        preg_match_all($pattern, $this->headers->get('to'), $matches);
+        $toData = array();
+        $counter = 0;
+        foreach($matches[0] as $match){
+            if($counter > 0)
+            {
+                $toData[] = $match;
+            }
+            $counter ++;
+        }
     }
 
     /**
