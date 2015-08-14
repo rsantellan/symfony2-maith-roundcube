@@ -167,7 +167,7 @@ class FormatHelper {
     public static function message_part_size($rcube, $part)
     {
         if (isset($part->d_parameters['size'])) {
-            $size = show_bytes($rcube, (int)$part->d_parameters['size']);
+            $size = self::show_bytes($rcube, (int)$part->d_parameters['size']);
         }
         else {
           $size = $part->size;
