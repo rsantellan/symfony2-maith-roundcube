@@ -285,8 +285,7 @@ class FormatHelper {
                     $attrs = array(
                         'href'    => 'mailto:' . $mailto,
                         'class'   => 'rcmContactAddress',
-                        'onclick' => sprintf("return %s.command('compose','%s',this)",
-                            rcmail_output::JS_OBJECT_NAME, rcube::JQ(format_email_recipient($mailto, $name))),
+                        'onclick' => '',
                     );
 
                     if ($show_email && $name && $mailto) {
@@ -525,6 +524,129 @@ class FormatHelper {
 
         return $out;
     }     
+    
+    /**
+     * return table with message headers
+     */
+    public static function rcmail_message_headers($rcube, $attrib, $headers=null)
+    {
+        //global $MESSAGE, $PRINT_MODE, $RCMAIL;
+        $sa_attrib = null;
+        // keep header table attrib
+        if (is_array($attrib) && !$sa_attrib && !$attrib['valueof'])
+            $sa_attrib = $attrib;
+        else if (!is_array($attrib) && is_array($sa_attrib))
+            $attrib = $sa_attrib;
+        
+        // get associative array of headers object
+        if (!$headers) {
+            $headers_obj = $MESSAGE->headers;
+            $headers     = get_object_vars($MESSAGE->headers);
+        }
+        else if (is_object($headers)) {
+            $headers_obj = $headers;
+            $headers     = get_object_vars($headers_obj);
+        }
+        else {
+            $headers_obj = rcube_message_header::from_array($headers);
+        }
+        // show these headers
+        $standard_headers = array('subject', 'from', 'sender', 'to', 'cc', 'bcc', 'replyto',
+            'mail-reply-to', 'mail-followup-to', 'date', 'priority');
+        $exclude_headers = $attrib['exclude'] ? explode(',', $attrib['exclude']) : array();
+        $output_headers  = array();
+        foreach ($standard_headers as $hkey) {
+            $ishtml = false;
+            if ($headers[$hkey])
+                $value = $headers[$hkey];
+            else if ($headers['others'][$hkey])
+                $value = $headers['others'][$hkey];
+            else if (!$attrib['valueof'])
+                continue;
+            if (in_array($hkey, $exclude_headers))
+                continue;
+            $header_title = $rcube->gettext(preg_replace('/(^mail-|-)/', '', $hkey));
+            if ($hkey == 'date') {
+                $header_value = self::format_date($rcube, $date);
+            }
+            else if ($hkey == 'priority') {
+                if ($value) {
+                    $header_value = html::span('prio' . $value, self::rcmail_localized_priority($value));
+                }
+                else
+                    continue;
+            }
+            else if ($hkey == 'replyto') {
+                if ($headers['replyto'] != $headers['from']) {
+                    $header_value = self::rcmail_address_string($rcube, $value, $attrib['max'], true,
+                        $attrib['addicon'], $headers['charset'], $header_title);
+                    $ishtml = true;
+                }
+                else
+                    continue;
+            }
+            else if ($hkey == 'mail-reply-to') {
+                if ($headers['mail-replyto'] != $headers['reply-to']
+                    && $headers['reply-to'] != $headers['from']
+                ) {
+                    $header_value = self::rcmail_address_string($rcube,$value, $attrib['max'], true,
+                        $attrib['addicon'], $headers['charset'], $header_title);
+                    $ishtml = true;
+                }
+                else
+                    continue;
+            }
+            else if ($hkey == 'sender') {
+                if ($headers['sender'] != $headers['from']) {
+                    $header_value = self::rcmail_address_string($rcube,$value, $attrib['max'], true,
+                        $attrib['addicon'], $headers['charset'], $header_title);
+                    $ishtml = true;
+                }
+                else
+                    continue;
+            }
+            else if ($hkey == 'mail-followup-to') {
+                $header_value = self::rcmail_address_string($rcube,$value, $attrib['max'], true,
+                    $attrib['addicon'], $headers['charset'], $header_title);
+                $ishtml = true;
+            }
+            else if (in_array($hkey, array('from', 'to', 'cc', 'bcc'))) {
+                $header_value = self::rcmail_address_string($rcube, $value, $attrib['max'], true,
+                    $attrib['addicon'], $headers['charset'], $header_title);
+                $ishtml = true;
+            }
+            else if ($hkey == 'subject' && empty($value))
+                $header_value = $rcube->gettext('nosubject');
+            else {
+                $value        = is_array($value) ? implode(' ', $value) : $value;
+                $header_value = trim(rcube_mime::decode_header($value, $headers['charset']));
+            }
+            $output_headers[$hkey] = array(
+                'title' => $header_title,
+                'value' => $header_value,
+                'raw'   => $value,
+                'html'  => $ishtml,
+            );
+        }
+        return $output_headers;
+    }
+    /**
+     * Convert Priority header value into a localized string
+     */
+    public static function rcmail_localized_priority($value)
+    {
+        $labels_map = array(
+            '1' => 'highest',
+            '2' => 'high',
+            '3' => 'normal',
+            '4' => 'low',
+            '5' => 'lowest',
+        );
+        if ($value && $labels_map[$value]) {
+            $labels_map[$value];
+        }
+        return '';
+    }    
 }
 
 

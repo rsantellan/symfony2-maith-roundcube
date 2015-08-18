@@ -249,7 +249,7 @@ class ReceiveHelper {
         {
           
           if ($part->type == 'headers') {
-                $out .= html::div('message-partheaders', rcmail_message_headers(sizeof($header_attrib) ? $header_attrib : null, $part->headers));
+                $out .= html::div('message-partheaders', FormatHelper::rcmail_message_headers($rcube, sizeof($header_attrib) ? $header_attrib : null, $part->headers));
           }
           else if ($part->type == 'content') {
               // unsupported (e.g. encrypted)
@@ -280,7 +280,7 @@ class ReceiveHelper {
                   $msgpart = rcube_mime::parse_message($body);
                   if (!empty($msgpart->headers)) {
                       $part = $msgpart;
-                      $out .= html::div('message-partheaders', rcmail_message_headers(sizeof($header_attrib) ? $header_attrib : null, $part->headers));
+                      $out .= html::div('message-partheaders', FormatHelper::rcmail_message_headers($rcubesizeof($header_attrib) ? $header_attrib : null, $part->headers));
                   }
               }
 
@@ -401,7 +401,7 @@ class ReceiveHelper {
           if (!empty($MESSAGE->parts)) {
               foreach ($MESSAGE->parts as $part) {
                   if ($part->type == 'headers') {
-                      $out .= html::div('message-partheaders', rcmail_message_headers(sizeof($header_attrib) ? $header_attrib : null, $part->headers));
+                      $out .= html::div('message-partheaders', FormatHelper::rcmail_message_headers($rcubesizeof($header_attrib) ? $header_attrib : null, $part->headers));
                   }
                   else if ($part->type == 'content') {
                       // unsupported (e.g. encrypted)
@@ -432,7 +432,7 @@ class ReceiveHelper {
                           $msgpart = rcube_mime::parse_message($body);
                           if (!empty($msgpart->headers)) {
                               $part = $msgpart;
-                              $out .= html::div('message-partheaders', rcmail_message_headers(sizeof($header_attrib) ? $header_attrib : null, $part->headers));
+                              $out .= html::div('message-partheaders', FormatHelper::rcmail_message_headers($rcubesizeof($header_attrib) ? $header_attrib : null, $part->headers));
                           }
                       }
 
