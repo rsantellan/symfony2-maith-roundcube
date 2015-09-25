@@ -2352,6 +2352,7 @@ class rcube_imap_generic
                         case 'disposition-notification-to':
                         case 'x-confirm-reading-to':
                             $result[$id]->mdn_to = $string;
+                            $result[$id]->need_reply = $string;
                             break;
                         case 'message-id':
                             $result[$id]->messageID = $string;

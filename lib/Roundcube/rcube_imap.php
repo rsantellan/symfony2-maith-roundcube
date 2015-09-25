@@ -154,6 +154,7 @@ class rcube_imap extends rcube_storage
                 array_merge($this->options, array('host' => $host, 'user' => $user,
                     'attempt' => ++$attempt)));
 
+            $data['retry'] = true;
             if (!empty($data['pass'])) {
                 $pass = $data['pass'];
             }
@@ -1185,6 +1186,8 @@ class rcube_imap extends rcube_storage
             return array();
         }
 
+        // @TODO Remove
+        $force = true;
         if (!$force && ($mcache = $this->get_mcache_engine())) {
             $headers = $mcache->get_messages($folder, $msgs);
         }
@@ -3723,6 +3726,8 @@ class rcube_imap extends rcube_storage
             $headers = array_merge($headers, $this->all_headers);
         }
 
+        $headers[] = strtoupper('x-confirm-reading-to');
+        $headers[] = strtoupper('return-receipt-requested');
         return $headers;
     }
 

@@ -166,7 +166,8 @@ class ReceiveHelper {
               $data[] = array(
                   'data' => $a_msg_cols,
                   'flags' => $a_msg_flags,
-                  'uid' => $header->uid
+                  'uid' => $header->uid,
+                  'header' => $header
               );
       }
       return array(
